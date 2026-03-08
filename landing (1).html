@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROGRESSAR — Evolução Real. Método Comprovado.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --orange: #FF5C00;
+  --orange2: #FF7A2B;
+  --dark: #060606;
+  --dark2: #0E0E0E;
+  --card: #141414;
+  --card2: #1A1A1A;
+  --border: #242424;
+  --text: #F0F0F0;
+  --muted: #888;
+  --muted2: #555;
+  --green: #4CAF50;
+  --gold: #D4AF37;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(6,6,6,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 3px;
+  color: var(--orange);
+}
+
+.nav-cta {
+  background: var(--orange);
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+.nav-cta:hover { background: var(--orange2); transform: scale(1.03); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,92,0,0.12) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 680px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.8s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,92,0,0.12);
+  border: 1px solid rgba(255,92,0,0.3);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--orange);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 12vw, 96px);
+  line-height: 0.95;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.hero-title span { color: var(--orange); }
+
+.hero-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(18px, 4vw, 24px);
+  color: var(--muted);
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+.hero-desc {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 40px;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 16px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary:hover { background: var(--orange2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,92,0,0.3); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 16px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.hero-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  color: var(--orange);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ── SECTION ── */
+section {
+  padding: 80px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.section-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 7vw, 56px);
+  letter-spacing: 1px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.section-sub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+/* ── COMO FUNCIONA ── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.step-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px 24px;
+  transition: border-color 0.2s;
+}
+.step-card:hover { border-color: var(--orange); }
+
+.step-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--orange);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.step-icon { font-size: 28px; margin-bottom: 12px; }
+.step-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+.step-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ── PARCEIROS ── */
+.partners-section {
+  background: var(--dark2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 80px 24px;
+}
+
+.partners-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.partner-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.partner-card:hover { transform: translateY(-4px); border-color: var(--orange); }
+
+.partner-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--orange2));
+}
+
+.partner-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), #8B0000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.partner-name {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.partner-role {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+
+.partner-cref {
+  display: inline-block;
+  background: rgba(255,92,0,0.1);
+  border: 1px solid rgba(255,92,0,0.2);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  color: var(--orange);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.partner-bio {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.partner-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.partner-tag {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.partner-cta {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  background: transparent;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.partner-cta:hover { background: var(--orange); color: white; }
+
+/* ── SUPLEMENTOS ── */
+.suplem-section { padding: 80px 24px; }
+.suplem-inner { max-width: 900px; margin: 0 auto; }
+
+.suplem-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(255,92,0,0.06);
+  border: 1px solid rgba(255,92,0,0.15);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 40px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.suplem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.suplem-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px 20px;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+.suplem-card:hover { border-color: var(--orange); transform: translateY(-3px); }
+
+.suplem-emoji { font-size: 36px; margin-bottom: 14px; display: block; }
+
+.suplem-name {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.suplem-purpose {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+
+.suplem-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.suplem-when {
+  font-size: 12px;
+  color: var(--muted2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.suplem-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--orange);
+  transition: background 0.2s;
+}
+.suplem-card:hover .suplem-link { background: var(--orange); color: white; }
+
+/* ── FEATURES ── */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.feature-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 20px;
+}
+
+.feature-icon { font-size: 28px; margin-bottom: 12px; }
+.feature-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+.feature-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ── DISCLAIMER LEGAL ── */
+.legal-bar {
+  background: var(--dark2);
+  border-top: 1px solid var(--border);
+  padding: 20px 24px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted2);
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  padding: 40px 24px 32px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  letter-spacing: 4px;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+.footer-tagline {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.footer-cta {
+  display: inline-block;
+  background: var(--orange);
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s;
+  margin-bottom: 32px;
+}
+.footer-cta:hover { background: var(--orange2); transform: translateY(-2px); }
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0 24px;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 600px) {
+  .hero-stats { gap: 24px; }
+  .hero-cta-group { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-secondary { width: 100%; max-width: 320px; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PROGRESSAR</div>
+  <a href="https://progressarapp.github.io/progressar/" class="nav-cta">Acessar o App →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🔥 Método comprovado · Foco feminino</div>
+    <h1 class="hero-title">Pare de <span>tentar</span>.<br>Comece a <span>construir</span>.</h1>
+    <p class="hero-subtitle">O app que pensa na sua progressão por você</p>
+    <p class="hero-desc">Progressão de carga inteligente, orientação de nutricionista e educador físico parceiros, e os melhores suplementos selecionados para o seu objetivo.</p>
+    <div class="hero-cta-group">
+      <a href="https://progressarapp.github.io/progressar/" class="btn-primary">🚀 Usar gratuitamente</a>
+      <a href="#como-funciona" class="btn-secondary">Ver como funciona</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Gratuito para usar</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">3-1-2</div>
+        <div class="hero-stat-label">Cadência de hipertrofia</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">0</div>
+        <div class="hero-stat-label">Planilhas necessárias</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="reveal">
+    <div class="section-tag">Como funciona</div>
+    <h2 class="section-title">Simples. Direto.<br>Sem enrolação.</h2>
+    <p class="section-sub">O PROGRESSAR automatiza o que uma planilha jamais conseguiria — e ainda aprende com o seu histórico.</p>
+  </div>
+  <div class="steps reveal">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-icon">📋</div>
+      <div class="step-title">Monte seu treino</div>
+      <div class="step-desc">Crie seu plano com os exercícios que você já faz. O app organiza tudo por série, peso e repetição.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-icon">💪</div>
+      <div class="step-title">Execute com método</div>
+      <div class="step-desc">Timer de cadência 3-1-2 guia cada repetição por áudio. Foco total no músculo, não na tela.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-icon">📈</div>
+      <div class="step-title">Progrida automaticamente</div>
+      <div class="step-desc">O algoritmo analisa seu histórico e sugere o momento exato de aumentar a carga.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-icon">🏆</div>
+      <div class="step-title">Veja sua evolução</div>
+      <div class="step-desc">Streak, badges e gráficos de progresso para manter a consistência semana após semana.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section>
+  <div class="reveal">
+    <div class="section-tag">Funcionalidades</div>
+    <h2 class="section-title">Tudo que você precisa.<br>Nada que você não precisa.</h2>
+  </div>
+  <div class="features-grid reveal">
+    <div class="feature-card">
+      <div class="feature-icon">⏱️</div>
+      <div class="feature-title">Cadência de execução com áudio</div>
+      <div class="feature-desc">3s descendo · 1s pausa · 2s subindo. O app fala em voz alta enquanto você foca no músculo.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <div class="feature-title">Progressão inteligente de carga</div>
+      <div class="feature-desc">Baseada no seu histórico real. Não em fórmulas genéricas — no que você conseguiu fazer.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧬</div>
+      <div class="feature-title">Biblioteca ADN muscular</div>
+      <div class="feature-desc">Entenda cada músculo, suas divisões e os melhores exercícios para cada porção.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔥</div>
+      <div class="feature-title">Streak e conquistas</div>
+      <div class="feature-desc">Sistema de gamificação que combate o abandono na segunda semana — maior causa de desistência.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏃</div>
+      <div class="feature-title">Registro de cardio</div>
+      <div class="feature-desc">Modalidade, intensidade e duração com dicas personalizadas por objetivo.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <div class="feature-title">PWA — funciona offline</div>
+      <div class="feature-desc">Instale na tela inicial do celular. Funciona sem internet. Zero anúncios.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PARCEIROS -->
+<div class="partners-section" id="parceiros">
+  <div class="partners-inner">
+    <div class="reveal">
+      <div class="section-tag">Equipe parceira</div>
+      <h2 class="section-title">Ciência por trás<br>do método.</h2>
+      <p class="section-sub">O PROGRESSAR é uma ferramenta de organização e registro. O conteúdo e as orientações abaixo são de profissionais habilitados que endossam a metodologia.</p>
+    </div>
+    <div class="partners-grid reveal">
+
+      <!-- Educador Físico -->
+      <div class="partner-card">
+        <div class="partner-avatar">💪</div>
+        <div class="partner-name">Dr. Rafael Costa</div>
+        <div class="partner-role">Educador Físico Parceiro</div>
+        <div class="partner-cref">CREF 012345-G/SP</div>
+        <p class="partner-bio">Especialista em treinamento de força e hipertrofia feminina. 12 anos de experiência clínica com foco em recomposição corporal e periodização para mulheres.</p>
+        <div class="partner-tags">
+          <span class="partner-tag">Hipertrofia</span>
+          <span class="partner-tag">Recomposição</span>
+          <span class="partner-tag">Periodização</span>
+          <span class="partner-tag">Biomecânica</span>
+        </div>
+        <a href="#" class="partner-cta">Consultar com Rafael →</a>
+      </div>
+
+      <!-- Nutricionista -->
+      <div class="partner-card">
+        <div class="partner-avatar">🥗</div>
+        <div class="partner-name">Dra. Camila Torres</div>
+        <div class="partner-role">Nutricionista Esportiva Parceira</div>
+        <div class="partner-cref">CRN 67890 · SP</div>
+        <p class="partner-bio">Nutricionista esportiva com especialização em nutrição para mulheres ativas. Atua com protocolos nutricionais integrados ao treinamento de força e saúde hormonal feminina.</p>
+        <div class="partner-tags">
+          <span class="partner-tag">Nutrição esportiva</span>
+          <span class="partner-tag">Saúde hormonal</span>
+          <span class="partner-tag">Recomposição</span>
+        </div>
+        <a href="#" class="partner-cta">Consultar com Camila →</a>
+      </div>
+
+    </div>
+
+    <!-- Disclaimer legal dos parceiros -->
+    <div style="margin-top:24px; padding:16px 20px; background:rgba(255,92,0,0.05); border:1px solid rgba(255,92,0,0.1); border-radius:12px; font-size:12px; color:var(--muted); line-height:1.7;">
+      ⚖️ <strong style="color:var(--text);">Aviso importante:</strong> O PROGRESSAR é uma ferramenta de organização e registro de treinos. As sugestões de progressão de carga são baseadas em algoritmos matemáticos, não em prescrição profissional. As consultas com os profissionais parceiros são serviços independentes. Para um programa personalizado, consulte sempre um profissional de Educação Física (CREF) e Nutricionista (CRN) habilitados.
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SUPLEMENTOS -->
+<div class="suplem-section" id="suplementos">
+  <div class="suplem-inner">
+    <div class="reveal">
+      <div class="section-tag">Suplementação</div>
+      <h2 class="section-title">Os melhores suplementos<br>para o seu objetivo.</h2>
+      <p class="section-sub">Seleção baseada em evidência científica para mulheres que treinam com foco em hipertrofia e saúde.</p>
+    </div>
+
+    <div class="suplem-disclaimer reveal">
+      <span>⚖️</span>
+      <span>Os links abaixo são indicações com base em evidência científica. Consulte sempre um nutricionista antes de iniciar qualquer suplementação. O PROGRESSAR não prescreve dietas ou suplementos — esta seleção é de caráter educativo e informativo.</span>
+    </div>
+
+    <div class="suplem-grid reveal">
+
+      <a href="https://www.amazon.com.br/s?k=whey+protein+feminino" target="_blank" class="suplem-card">
+        <span class="suplem-emoji">🥛</span>
+        <div class="suplem-name">Whey Protein</div>
+        <div class="suplem-purpose">Recuperação muscular</div>
+        <div class="suplem-desc">A proteína mais estudada do mundo para ganho de massa muscular. Essencial para atingir a meta proteica diária com praticidade.</div>
+        <div class="suplem-when">⏰ Após o treino ou entre refeições</div>
+        <div class="suplem-link">Ver opções recomendadas <span>→</span></div>
+      </a>
+
+      <a href="https://www.amazon.com.br/s?k=creatina+monoidratada" target="_blank" class="suplem-card">
+        <span class="suplem-emoji">⚡</span>
+        <div class="suplem-name">Creatina Monoidratada</div>
+        <div class="suplem-purpose">Força e performance</div>
+        <div class="suplem-desc">O suplemento mais respaldado pela ciência. Aumenta força, performance e acelera a recuperação. Segura para uso contínuo.</div>
+        <div class="suplem-when">⏰ Diariamente — horário livre</div>
+        <div class="suplem-link">Ver opções recomendadas <span>→</span></div>
+      </a>
+
+      <a href="https://www.amazon.com.br/s?k=colageno+tipo+2" target="_blank" class="suplem-card">
+        <span class="suplem-emoji">💎</span>
+        <div class="suplem-name">Colágeno Hidrolisado</div>
+        <div class="suplem-purpose">Pele, articulações e firmeza</div>
+        <div class="suplem-desc">Fundamental para saúde articular e firmeza da pele durante a perda de peso. Especialmente importante para mulheres acima dos 30 anos.</div>
+        <div class="suplem-when">⏰ Em jejum ou com vitamina C</div>
+        <div class="suplem-link">Ver opções recomendadas <span>→</span></div>
+      </a>
+
+      <a href="https://www.amazon.com.br/s?k=omega+3+tg+fish+oil" target="_blank" class="suplem-card">
+        <span class="suplem-emoji">🐟</span>
+        <div class="suplem-name">Ômega-3 TG</div>
+        <div class="suplem-purpose">Anti-inflamatório e hormonal</div>
+        <div class="suplem-desc">Reduz inflamação muscular pós-treino, melhora sensibilidade à insulina e apoia o equilíbrio hormonal feminino.</div>
+        <div class="suplem-when">⏰ Com refeições principais</div>
+        <div class="suplem-link">Ver opções recomendadas <span>→</span></div>
+      </a>
+
+      <a href="https://www.amazon.com.br/s?k=vitamina+d3+k2" target="_blank" class="suplem-card">
+        <span class="suplem-emoji">☀️</span>
+        <div class="suplem-name">Vitamina D3 + K2</div>
+        <div class="suplem-purpose">Imunidade, ossos e humor</div>
+        <div class="suplem-desc">80% dos brasileiros têm deficiência de vitamina D. Impacta diretamente força muscular, imunidade e saúde óssea feminina.</div>
+        <div class="suplem-when">⏰ Com refeição gordurosa</div>
+        <div class="suplem-link">Ver opções recomendadas <span>→</span></div>
+      </a>
+
+      <a href="https://www.amazon.com.br/s?k=magnesio+quelato" target="_blank" class="suplem-card">
+        <span class="suplem-emoji">🌙</span>
+        <div class="suplem-name">Magnésio Quelato</div>
+        <div class="suplem-purpose">Sono, câimbras e estresse</div>
+        <div class="suplem-desc">Mineral essencial para mais de 300 reações metabólicas. Melhora qualidade do sono, reduz câimbras e combate ansiedade.</div>
+        <div class="suplem-when">⏰ À noite, antes de dormir</div>
+        <div class="suplem-link">Ver opções recomendadas <span>→</span></div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CTA FINAL -->
+<section style="text-align:center; padding: 80px 24px;">
+  <div class="reveal">
+    <div class="section-tag">Comece agora</div>
+    <h2 class="section-title">Seu primeiro treino<br>está a um toque.</h2>
+    <p style="font-size:16px; color:var(--muted); margin:16px auto 40px; max-width:460px; line-height:1.7;">Gratuito. Sem cadastro. Sem cartão. Funciona direto no navegador do seu celular.</p>
+    <a href="https://progressarapp.github.io/progressar/" class="btn-primary" style="font-size:17px; padding:18px 40px;">
+      🚀 Acessar o PROGRESSAR
+    </a>
+  </div>
+</section>
+
+<!-- LEGAL BAR -->
+<div class="legal-bar">
+  ⚖️ PROGRESSAR é uma ferramenta de organização e registro de treinos. As sugestões de progressão de carga são baseadas em algoritmos matemáticos e <strong>não substituem um profissional de Educação Física (CREF) ou Nutricionista (CRN)</strong>.<br>
+  Os links de suplementos são indicações educativas. Consulte sempre um profissional de saúde antes de iniciar suplementação.
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">PROGRESSAR</div>
+  <div class="footer-tagline">Evolução real. Método comprovado.</div>
+  <a href="https://progressarapp.github.io/progressar/" class="footer-cta">Acessar o App →</a>
+  <div class="footer-copy">© 2025 PROGRESSAR · Desenvolvido para mulheres que treinam com método</div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
