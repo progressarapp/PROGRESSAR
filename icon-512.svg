@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="100" fill="#0A0A0A"/>
+  <rect width="512" height="512" rx="100" fill="url(#grad512)"/>
+  <defs>
+    <linearGradient id="grad512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A1A1A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0A0A0A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Barra de progresso decorativa -->
+  <rect x="64" y="348" width="384" height="20" rx="10" fill="#1E1E1E"/>
+  <rect x="64" y="348" width="268" height="20" rx="10" fill="#FF5C00"/>
+  <!-- Letra P grande -->
+  <text x="256" y="312" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="295" fill="#FF5C00" text-anchor="middle">P</text>
+  <!-- Seta de progressão -->
+  <polygon points="396,138 432,100 432,176" fill="#FF5C00" opacity="0.7"/>
+</svg>
