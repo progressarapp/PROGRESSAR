@@ -21,7 +21,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="PROGRESSAR">
   <meta name="description" content="App de progressão de carga baseado no Método Paulo Muzy. Sem planilha, sem achismo.">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <meta property="og:title" content="PROGRESSAR — Progressão Inteligente">
   <meta property="og:description" content="Coach virtual, cardio inteligente, modo iniciante e progressão automática.">
   <meta property="og:type" content="website">
@@ -932,8 +931,6 @@
   }
   .cadencia-preset.ativo { background: var(--orange); border-color: var(--orange); color: white; }
 
-
-
   /* ── RETENTION / GAMIFICATION CSS ── */
 
   /* Streak */
@@ -1062,77 +1059,6 @@
     0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
     100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
   }
-
-  /* ── PLANTA DO PROGRESSO ── */
-  .plant-container {
-    background: linear-gradient(135deg, #0a1a0a, #0f1f0f);
-    border: 1px solid rgba(0,230,118,0.35);
-    border-radius: 16px;
-    padding: 16px 18px;
-    margin-bottom: 12px;
-    position: relative;
-    overflow: hidden;
-  }
-  .plant-container::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--green), #00bcd4, var(--green));
-    background-size: 200% 100%;
-    animation: shimmer 3s infinite;
-  }
-  .plant-emoji {
-    font-size: 56px;
-    line-height: 1;
-    transition: all 0.6s cubic-bezier(0.68,-0.55,0.27,1.55);
-    filter: drop-shadow(0 0 12px #00E676AA);
-  }
-  .plant-dead {
-    filter: grayscale(1) brightness(0.5) !important;
-    transform: rotate(-15deg) scale(0.8) !important;
-  }
-  .plant-label { font-size: 10px; font-weight: 800; letter-spacing: 2px; color: var(--green); text-transform: uppercase; }
-  .plant-name  { font-size: 15px; font-weight: 700; color: var(--text); margin: 2px 0; }
-  .plant-status { font-size: 11px; color: var(--muted2); }
-  .plant-streak { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--green); line-height: 1; }
-
-  /* ── APOSTA FINANCEIRA ── */
-  .aposta-card {
-    background: linear-gradient(135deg, #1a0505, #0a0a0a);
-    border: 1px solid rgba(255,82,82,0.4);
-    border-radius: 16px;
-    padding: 16px 18px;
-    margin-bottom: 12px;
-    position: relative;
-    overflow: hidden;
-  }
-  .aposta-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--red), #ff9800, var(--red));
-    background-size: 200% 100%;
-    animation: shimmer 2s infinite;
-  }
-  .aposta-ativar-btn {
-    width: 100%;
-    padding: 13px;
-    background: rgba(255,82,82,0.1);
-    border: 1.5px dashed rgba(255,82,82,0.4);
-    border-radius: 12px;
-    color: var(--red);
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-  .aposta-ativar-btn:hover { background: rgba(255,82,82,0.18); border-style: solid; }
 
   /* Check-in modal */
   .checkin-overlay {
@@ -1460,30 +1386,6 @@
 </head>
 <body>
 
-<!-- MODAL LGPD -->
-<div id="lgpd-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:99999;display:none;align-items:flex-end;justify-content:center;">
-  <div style="background:#111;border-radius:24px 24px 0 0;width:100%;max-width:520px;max-height:88vh;overflow-y:auto;padding:28px 22px 40px;border-top:1px solid #222;">
-    <div style="width:40px;height:4px;background:#333;border-radius:4px;margin:0 auto 20px;"></div>
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:#FF5C00;margin-bottom:4px;">TERMOS DE USO & PRIVACIDADE</div>
-    <div style="font-size:11px;color:#666;margin-bottom:20px;letter-spacing:1px;">LGPD — LEI 13.709/2018</div>
-    <div style="display:flex;flex-direction:column;gap:14px;font-size:13px;color:#aaa;line-height:1.7;margin-bottom:24px;">
-      <div style="background:#1A1A1A;border-radius:12px;padding:14px;">
-        <div style="font-weight:700;color:#F0F0F0;margin-bottom:6px;">📱 Seus dados ficam no seu dispositivo</div>
-        Todos os dados (nome, treinos, histórico) são armazenados <strong style="color:#fff;">exclusivamente no seu dispositivo</strong> via localStorage. Nenhuma informação é enviada a servidores externos.
-      </div>
-      <div style="background:#1A1A1A;border-radius:12px;padding:14px;">
-        <div style="font-weight:700;color:#F0F0F0;margin-bottom:6px;">🔒 Seus direitos (LGPD)</div>
-        Apague todos os dados a qualquer momento em <strong style="color:#fff;">Perfil → Resetar todos os dados</strong>.
-      </div>
-      <div style="background:#1A1A1A;border-radius:12px;padding:14px;">
-        <div style="font-weight:700;color:#F0F0F0;margin-bottom:6px;">⚕️ Aviso de saúde</div>
-        As sugestões de progressão são algoritmos e <strong style="color:#FF5C00;">não substituem orientação de profissional de Educação Física (CREF)</strong>.
-      </div>
-    </div>
-    <button onclick="aceitarLGPD()" style="width:100%;background:#FF5C00;border:none;color:white;border-radius:14px;padding:16px;font-size:15px;font-weight:800;cursor:pointer;">✅ Entendi e aceito os termos</button>
-  </div>
-</div>
-
 <!-- NOTIFICATION -->
 <div class="notification" id="notification">
   <div class="notification-icon" id="notif-icon">🎯</div>
@@ -1752,7 +1654,7 @@
         <div style="margin-bottom:14px;">
           <label>Nome do exercício</label>
           <input type="text" id="ex-name" placeholder="Ex: Supino Reto com Barra" 
-            oninput="(function(){ const plan = state.workoutPlans?.find(p=>p.id===state.currentPlanId); if(plan) renderOverlapAlerts(plan.id, this.value); }).call(this)">
+            oninput="(function(){ const plan = state.plans?.find(p=>p.id===state.currentPlanId); if(plan) renderOverlapAlerts(plan.id, this.value); }).call(this)">
         </div>
 
         <!-- Linha 2: Grupo muscular -->
@@ -1768,38 +1670,6 @@
             <option value="Glúteo">🍑 Glúteo</option>
             <option value="Abdômen">🔥 Abdômen</option>
           </select>
-        </div>
-
-        <!-- Linha 2b: Padrão de movimento -->
-        <div style="margin-bottom:14px;">
-          <label style="display:block;margin-bottom:6px;">Padrão de movimento <span style="font-size:10px;color:var(--muted2);font-weight:400;">(define a cadência correta)</span></label>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
-            <button type="button" id="mov-btn-empurra" onclick="setMovimento('empurra')"
-              style="padding:10px 4px;border-radius:10px;border:1px solid var(--orange-mid);
-                     background:var(--orange-dim);color:var(--orange);cursor:pointer;
-                     font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px;">
-              <span style="font-size:20px;">↓↑</span>
-              <span>Empurra</span>
-              <span style="font-size:9px;font-weight:400;color:var(--muted2);">Supino, Press, Agach</span>
-            </button>
-            <button type="button" id="mov-btn-puxa" onclick="setMovimento('puxa')"
-              style="padding:10px 4px;border-radius:10px;border:1px solid var(--border2);
-                     background:var(--card);color:var(--muted2);cursor:pointer;
-                     font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px;">
-              <span style="font-size:20px;">↑↓</span>
-              <span>Puxada</span>
-              <span style="font-size:9px;font-weight:400;">Pulley, Barra fixa</span>
-            </button>
-            <button type="button" id="mov-btn-remada" onclick="setMovimento('remada')"
-              style="padding:10px 4px;border-radius:10px;border:1px solid var(--border2);
-                     background:var(--card);color:var(--muted2);cursor:pointer;
-                     font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px;">
-              <span style="font-size:20px;">→←</span>
-              <span>Remada</span>
-              <span style="font-size:9px;font-weight:400;">Row, Remada, T-bar</span>
-            </button>
-          </div>
-          <input type="hidden" id="ex-movimento" value="empurra">
         </div>
 
         <!-- Linha 3: Livre ou Máquina -->
@@ -1823,8 +1693,11 @@
         <!-- Linha 4: Equipamento -->
         <div style="margin-bottom:14px;">
           <label>Equipamento</label>
-          <input type="hidden" id="ex-equip" value="Halteres (1-10kg)">
-          <div id="ex-equip-btns" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-top:6px;"></div>
+          <select id="ex-equip">
+            <option value="Halteres (1-10kg)">🏋️ Halteres (fixos 1–10kg)</option>
+            <option value="Dumbbells (12kg+)">💪 Dumbbells (12, 14, 16kg...)</option>
+            <option value="Anilhas (barra)">🔴 Anilhas (combinação de placas)</option>
+          </select>
         </div>
 
         <!-- Linha 5: Peso + Reps -->
@@ -1937,38 +1810,12 @@
         </div>
         <div>
           <label>Equipamento</label>
-          <input type="hidden" id="edit-ex-equip" value="Halteres (1-10kg)">
-          <div id="edit-ex-equip-btns" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-top:6px;"></div>
+          <select id="edit-ex-equip">
+            <option value="Halteres (1-10kg)">🏋️ Halteres (fixos 1–10kg)</option>
+            <option value="Dumbbells (12kg+)">💪 Dumbbells (12, 14, 16kg...)</option>
+            <option value="Anilhas (barra)">🔴 Anilhas (combinação de placas)</option>
+          </select>
         </div>
-      </div>
-
-      <!-- Padrão de movimento -->
-      <div style="margin-bottom:4px;">
-        <label style="display:block;margin-bottom:6px;">Padrão de movimento <span style="font-size:10px;color:var(--muted2);font-weight:400;">(define a cadência correta)</span></label>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
-          <button type="button" id="edit-mov-btn-empurra" onclick="setMovimento('empurra','edit')"
-            style="padding:10px 4px;border-radius:10px;border:1px solid var(--orange-mid);
-                   background:var(--orange-dim);color:var(--orange);cursor:pointer;
-                   font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px;">
-            <span style="font-size:20px;">↓↑</span><span>Empurra</span>
-            <span style="font-size:9px;font-weight:400;color:var(--muted2);">Supino, Press, Agach</span>
-          </button>
-          <button type="button" id="edit-mov-btn-puxa" onclick="setMovimento('puxa','edit')"
-            style="padding:10px 4px;border-radius:10px;border:1px solid var(--border2);
-                   background:var(--card);color:var(--muted2);cursor:pointer;
-                   font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px;">
-            <span style="font-size:20px;">↑↓</span><span>Puxada</span>
-            <span style="font-size:9px;font-weight:400;">Pulley, Barra fixa</span>
-          </button>
-          <button type="button" id="edit-mov-btn-remada" onclick="setMovimento('remada','edit')"
-            style="padding:10px 4px;border-radius:10px;border:1px solid var(--border2);
-                   background:var(--card);color:var(--muted2);cursor:pointer;
-                   font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px;">
-            <span style="font-size:20px;">→←</span><span>Remada</span>
-            <span style="font-size:9px;font-weight:400;">Row, Remada, T-bar</span>
-          </button>
-        </div>
-        <input type="hidden" id="edit-ex-movimento" value="empurra">
       </div>
       <div class="grid-2">
         <div>
@@ -2116,8 +1963,11 @@
               </button>
             </div>
             <input type="hidden" id="wb-execution" value="livre">
-            <input type="hidden" id="wb-ex-equip" value="Halteres (1-10kg)">
-            <div id="wb-ex-equip-btns" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-top:6px;"></div>
+            <select id="wb-ex-equip" style="margin-top:6px;">
+              <option value="Halteres (1-10kg)">🏋️ Halteres (fixos 1–10kg)</option>
+              <option value="Dumbbells (12kg+)">💪 Dumbbells (12, 14, 16kg...)</option>
+              <option value="Anilhas (barra)">🔴 Anilhas (combinação de placas)</option>
+            </select>
           </div>
           <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
             <div>
@@ -2176,16 +2026,17 @@
         + Criar novo exercício
       </button>
 
+      <div style="background:var(--orange-dim); border:1px solid var(--orange-mid); border-radius:10px; padding:10px 12px; margin-bottom:10px; font-size:12px; color:var(--orange); font-weight:600;">💡 Recomendado: 5–7 exercícios para um treino equilibrado</div>
       <div id="wb-selected-preview" style="background:var(--card2); border-radius:10px; padding:12px; min-height:48px;">
         <div style="font-size:12px; color:var(--muted2); margin-bottom:8px;">SELECIONADOS (<span id="wb-selected-count">0</span>)</div>
         <div id="wb-selected-tags" style="display:flex; flex-wrap:wrap; gap:6px;">
-          <span style="color:var(--muted); font-size:13px; font-style:italic;">Nenhum exercício selecionado</span>
+          <span style="color:var(--muted2); font-size:12px;">Toque nos exercícios acima para adicionar</span>
         </div>
       </div>
 
       <div style="display:flex; gap:8px; margin-top:16px;">
         <button class="btn btn-ghost btn-full" onclick="wbBack(2)">← Voltar</button>
-        <button class="btn btn-primary btn-full" onclick="wbNext(2)">Revisar →</button>
+        <button class="btn btn-primary btn-full" onclick="wbNext(2)">Organizar Treino →</button>
       </div>
     </div>
 
@@ -2241,14 +2092,31 @@
       <div class="dot active" id="dot-0"></div>
       <div class="dot" id="dot-1"></div>
       <div class="dot" id="dot-2"></div>
-      <div class="dot" id="dot-3"></div>
     </div>
 
     <div class="step active" id="step-0">
-      <div style="font-size:48px; margin-bottom:16px;">🏋️</div>
-      <h2 style="font-family:'Bebas Neue'; font-size:28px; margin-bottom:8px; letter-spacing:1px;">Evolua com método</h2>
-      <p style="color:var(--muted2); font-size:14px; line-height:1.6; margin-bottom:28px;">Baseado no método de Paulo Muzy, o PROGRESSAR automatiza sua progressão de carga — sem planilha, sem cálculo, sem estagnação.</p>
-      <button class="btn btn-primary btn-full btn-lg" onclick="nextStep()">Começar →</button>
+      <div style="font-size:52px; margin-bottom:12px;">🔥</div>
+      <h2 style="font-family:'Bebas Neue'; font-size:30px; margin-bottom:10px; letter-spacing:1px;">Bem-vindo ao PROGRESSAR!</h2>
+      <p style="color:var(--text); font-size:15px; font-weight:600; line-height:1.5; margin-bottom:16px;">Aqui você <strong style="color:var(--orange)">não escolhe o peso</strong>. Fique tranquilo.</p>
+      <div style="background:var(--card2); border-radius:14px; padding:16px; margin-bottom:20px; text-align:left;">
+        <div style="font-size:11px; color:var(--orange); font-weight:700; letter-spacing:1px; margin-bottom:12px;">💡 RESUMO DO MÉTODO</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:28px; height:28px; background:var(--orange-dim); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;">1</div>
+            <div style="font-size:13px; color:var(--text);"><strong>Foque na execução perfeita</strong> — técnica primeiro</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:28px; height:28px; background:var(--orange-dim); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;">2</div>
+            <div style="font-size:13px; color:var(--text);"><strong>Aumente as repetições</strong> até o limite da meta</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:28px; height:28px; background:var(--orange-dim); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;">3</div>
+            <div style="font-size:13px; color:var(--text);"><strong>A carga sobe automaticamente</strong> — o app decide por você</div>
+          </div>
+        </div>
+      </div>
+      <p style="color:var(--muted2); font-size:13px; margin-bottom:20px;">Baseado no método Paulo Muzy. Sem planilha, sem achismo.</p>
+      <button class="btn btn-primary btn-full btn-lg" onclick="nextStep()">Entendi, vamos lá! →</button>
     </div>
 
     <div class="step" id="step-1">
@@ -2304,44 +2172,11 @@
       <button class="btn btn-primary btn-full btn-lg" style="margin-top:20px;" onclick="nextStep()">Continuar →</button>
     </div>
 
-    <!-- NOVO: Como funciona — passo visual -->
     <div class="step" id="step-2">
-      <h2 style="font-family:'Bebas Neue'; font-size:26px; margin-bottom:6px; letter-spacing:1px;">COMO FUNCIONA</h2>
-      <p style="color:var(--muted2); font-size:13px; margin-bottom:20px;">Só 3 passos. É isso.</p>
-      <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:24px; text-align:left;">
-        <div style="display:flex; gap:14px; align-items:flex-start; background:var(--card2); border-radius:14px; padding:14px; border:1px solid var(--border2);">
-          <div style="font-size:32px; line-height:1;">📋</div>
-          <div>
-            <div style="font-weight:700; font-size:14px; margin-bottom:4px;">1 — Crie seu treino</div>
-            <div style="font-size:12px; color:var(--muted2); line-height:1.6;">Em "Treinos", adicione seus exercícios com o peso que você usa hoje.</div>
-          </div>
-        </div>
-        <div style="display:flex; gap:14px; align-items:flex-start; background:var(--card2); border-radius:14px; padding:14px; border:1px solid var(--border2);">
-          <div style="font-size:32px; line-height:1;">✅</div>
-          <div>
-            <div style="font-weight:700; font-size:14px; margin-bottom:4px;">2 — Registre as séries</div>
-            <div style="font-size:12px; color:var(--muted2); line-height:1.6;">Durante o treino, marque cada série feita — peso e reps. O app salva tudo automaticamente.</div>
-          </div>
-        </div>
-        <div style="display:flex; gap:14px; align-items:flex-start; background:var(--orange-dim); border-radius:14px; padding:14px; border:1px solid var(--orange-mid);">
-          <div style="font-size:32px; line-height:1;">⬆️</div>
-          <div>
-            <div style="font-weight:700; font-size:14px; margin-bottom:4px; color:var(--orange);">3 — O app avisa quando subir o peso</div>
-            <div style="font-size:12px; color:var(--muted2); line-height:1.6;">Quando você completar as reps em todas as séries, aparece o botão de progressão. Só confirmar!</div>
-          </div>
-        </div>
-      </div>
-      <button class="btn btn-primary btn-full btn-lg" onclick="nextStep()">Entendi! →</button>
-    </div>
-
-    <div class="step" id="step-3">
       <div style="font-size:48px; margin-bottom:16px;">🎯</div>
       <h2 style="font-family:'Bebas Neue'; font-size:28px; margin-bottom:8px; letter-spacing:1px;">TUDO PRONTO!</h2>
-      <p style="color:var(--muted2); font-size:14px; line-height:1.6; margin-bottom:16px;">Vamos criar seu primeiro treino agora?</p>
-      <div style="background:var(--card2); border-radius:12px; padding:14px; margin-bottom:20px; border:1px solid var(--border2); font-size:12px; color:var(--muted2); line-height:1.7; text-align:left;">
-        💡 <strong style="color:var(--text);">Dica:</strong> Comece com os pesos que você usa com <strong style="color:var(--text);">boa execução</strong>, sem forçar. O app vai te dizer quando aumentar.
-      </div>
-      <button class="btn btn-primary btn-full btn-lg" onclick="finishOnboarding()">Criar meu primeiro treino 🚀</button>
+      <p style="color:var(--muted2); font-size:14px; line-height:1.6; margin-bottom:28px;">Vamos configurar seus primeiros treinos e você já começa a registrar sua evolução hoje.</p>
+      <button class="btn btn-primary btn-full btn-lg" onclick="finishOnboarding()">Entrar no app 🚀</button>
     </div>
   </div>
 </div>
@@ -2360,8 +2195,8 @@
     <button class="nav-btn" id="nav-exercicios" onclick="switchView('exercicios')" aria-label="Exercícios">
       💪 <span class="tooltip">Exercícios</span>
     </button>
-    <button class="nav-btn" id="nav-historico" onclick="switchView('historico')" aria-label="Histórico">
-      📈 <span class="tooltip">Histórico</span>
+    <button class="nav-btn" id="nav-historico" onclick="switchView('historico')" aria-label="Meu Progresso">
+      📈 <span class="tooltip">Meu Progresso</span>
     </button>
     <button class="nav-btn" id="nav-cardio" onclick="switchView('cardio')" aria-label="Cardio">
       🏃 <span class="tooltip">Cardio</span>
@@ -2372,8 +2207,8 @@
 
     <div style="flex:1;"></div>
 
-    <button class="nav-btn" id="nav-foco" onclick="switchView('foco')" aria-label="Modo Foco">
-      🎯 <span class="tooltip">Modo Foco</span>
+    <button class="nav-btn" id="nav-foco" onclick="switchView('foco')" aria-label="Treinar Agora">
+      🎯 <span class="tooltip">Treinar Agora</span>
     </button>
     <button class="nav-btn" id="nav-perfil" onclick="switchView('perfil')" aria-label="Perfil">
       👤 <span class="tooltip">Perfil</span>
@@ -2428,12 +2263,7 @@
         <div class="suggestion-box" style="margin-bottom:20px;">
           <div class="suggestion-title">⚡ PRÓXIMO TREINO SUGERIDO</div>
           <div id="next-workout-content">
-            <div style="padding:4px 0;">
-              <p style="color:var(--muted2); font-size:13px; margin-bottom:12px;">Você ainda não criou nenhum treino.</p>
-              <button class="btn btn-primary btn-full" onclick="switchView('treinos')" style="font-size:13px;">
-                📋 Criar meu primeiro treino →
-              </button>
-            </div>
+            <p style="color:var(--muted2); font-size:14px;">Crie seu primeiro treino para começar!</p>
           </div>
         </div>
 
@@ -2441,13 +2271,8 @@
 
         <div class="section-title">ÚLTIMAS SESSÕES</div>
         <div id="recent-sessions">
-          <div style="color:var(--muted2); font-size:13px; padding:20px 16px; text-align:center; background:var(--card); border-radius:12px; border:1px solid var(--border); line-height:1.8;">
-            <div style="font-size:28px; margin-bottom:8px;">📭</div>
-            Nenhuma sessão ainda.<br>
-            <span style="font-size:12px;">Crie um treino → inicie → registre as séries → pronto!</span><br>
-            <button onclick="switchView('treinos')" style="margin-top:10px; background:var(--orange-dim); border:1px solid var(--orange-mid); color:var(--orange); font-size:12px; font-weight:700; padding:6px 16px; border-radius:20px; cursor:pointer;">
-              Começar agora →
-            </button>
+          <div style="color:var(--muted2); font-size:14px; padding:16px; text-align:center; background:var(--card); border-radius:12px; border:1px solid var(--border);">
+            Nenhuma sessão registrada ainda.<br>Inicie seu primeiro treino!
           </div>
         </div>
       </div>
@@ -2464,11 +2289,9 @@
 
       <div class="section">
         <div id="workout-plans-list">
-          <div style="font-size:13px;color:var(--muted2);padding:24px 20px;text-align:center;background:var(--card);border-radius:14px;border:1px dashed var(--border2);line-height:1.8;">
-            <div style="font-size:36px;margin-bottom:10px;">📋</div>
-            <div style="font-weight:700;font-size:14px;color:var(--text);margin-bottom:6px;">Nenhum treino ainda</div>
-            Clique em <strong style="color:var(--orange);">+ Novo Treino</strong> acima para criar sua primeira ficha.<br>
-            <span style="font-size:11px;">Adicione os exercícios que você já faz na academia.</span>
+          <div style="color:var(--muted2); font-size:14px; padding:24px; text-align:center; background:var(--card); border-radius:12px; border:1px dashed var(--border2);">
+            <div style="font-size:32px; margin-bottom:8px;">📋</div>
+            Nenhum treino criado ainda.<br>Crie seu primeiro treino acima!
           </div>
         </div>
       </div>
@@ -2697,9 +2520,6 @@
           <button class="btn btn-ghost btn-full" onclick="resetApp()" style="color:var(--red); border-color:var(--red-dim);">
             🗑 Resetar todos os dados
           </button>
-          <button class="btn btn-ghost btn-full" style="margin-top:8px;font-size:12px;color:var(--muted2);" onclick="document.getElementById('lgpd-overlay').style.display='flex'">
-            🔒 Termos de Uso & Privacidade (LGPD)
-          </button>
         </div>
       </div>
     </div>
@@ -2729,7 +2549,7 @@
         <p style="color:var(--muted2); font-size:15px; line-height:1.6; max-width:320px; margin-bottom:32px;">
           Interface minimalista para durante o treino.<br>Só o essencial — sem distrações.
         </p>
-        <button class="btn btn-primary btn-lg" onclick="startFocoMode()" aria-label="Modo Foco">Iniciar Treino em Foco</button>
+        <button class="btn btn-primary btn-lg" onclick="startFocoMode()" aria-label="Treinar Agora">Iniciar Treino em Foco</button>
         <p style="color:var(--muted); font-size:12px; margin-top:12px;">Selecione um treino para começar</p>
         <div id="foco-plan-select" style="margin-top:16px; display:flex; flex-direction:column; gap:8px; width:100%; max-width:320px;"></div>
       </div>
@@ -2927,8 +2747,7 @@
         </div>
         <div style="display:flex; gap:12px; align-items:flex-start;">
           <div style="background:var(--orange-dim); color:var(--orange); font-weight:700; font-size:13px; min-width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center;">5</div>
-          <div><div style="font-weight:700; font-size:14px;">🎯 Modo Foco</div><div style="font-size:12px; color:var(--muted2); margin-top:2px;">Interface minimalista para durante o treino. Só o essencial — sem distrações.</div></div>
-        </div>
+          
       </div>
       <!-- Disclaimer legal -->
       <div style="background:var(--card2); border-radius:10px; padding:10px 12px; margin-bottom:16px; font-size:11px; color:var(--muted2); line-height:1.6; text-align:left;">
@@ -2987,8 +2806,7 @@ motivoBloqueio: null
 cardio: {
 historico: [],
 ultimoCardioIntenso: null
-},
-aposta: null
+}
 };
 
 function saveState() { save(); }  
@@ -3080,11 +2898,6 @@ save();
 document.getElementById('onboarding-screen').style.display = 'none';
 document.getElementById('app-screen').style.display = 'flex';
 initApp();
-// Leva direto para Treinos para criar o primeiro
-setTimeout(() => {
-  switchView('treinos');
-  showNotif('👋', `Bem-vindo, ${name}!`, 'Crie seu primeiro treino aqui abaixo ↓', 'success');
-}, 300);
 }
 
 function initApp() {
@@ -3129,9 +2942,7 @@ const badgesHtml = renderBadges();
 const retContainer = document.getElementById('retention-widgets');
 if (retContainer) {
 try {
-const plantaHtml = renderPlantaWidget();
-const apostaHtml = renderApostaWidget();
-retContainer.innerHTML = voltaHtml + streakHtml + plantaHtml + apostaHtml + progress30Html + badgesHtml;
+retContainer.innerHTML = voltaHtml + streakHtml + progress30Html + badgesHtml;
 } catch(e) { console.warn('Retention widgets error:', e); }
 setTimeout(() => {
 document.querySelectorAll('.xp-bar-fill').forEach(el => {
@@ -3405,7 +3216,7 @@ const line = document.getElementById(`wbl-${l}`);
 line.classList.toggle('done', l < step);
 });
 wb.step = step;
-if (step === 2) { wbRenderExercises(); setTimeout(() => setExecution('livre', 'wb'), 50); }
+if (step === 2) wbRenderExercises();
 if (step === 3) wbRenderConfirm();
 }
 
@@ -3539,7 +3350,7 @@ save();
 closeModal('workout-plan-modal');
 renderWorkoutPlans();
 updateDashboard();
-showNotif('✅', 'Treino criado!', `"${name}" com ${wb.selectedExIds.length} exercícios`, 'success');
+showNotif('✅', 'Treino criado com sucesso!', `"${name}" está pronto — acesse Meus Treinos para começar!`, 'success');
 }
 
 function openEditWorkout(planId) {
@@ -3696,7 +3507,6 @@ sets: parseInt(document.getElementById('ex-sets').value) || 3,
 rest: parseInt(document.getElementById('ex-rest').value) || 90,
 increment: parseFloat(document.getElementById('ex-increment').value) || 2,
 execution: document.getElementById('ex-execution').value || 'livre',
-movimento: document.getElementById('ex-movimento')?.value || 'empurra',
 };
 state.exercises.push(ex);
 save();
@@ -3713,16 +3523,13 @@ if (!ex) return;
 document.getElementById('edit-ex-id').value = ex.id;
 document.getElementById('edit-ex-name').value = ex.name;
 document.getElementById('edit-ex-group').value = ex.group;
-document.getElementById('edit-ex-equip').value = ex.equip || 'Halteres (1-10kg)';
+document.getElementById('edit-ex-equip').value = ex.equip;
 document.getElementById('edit-ex-weight').value = ex.weight;
 document.getElementById('edit-ex-reps').value = ex.reps;
 document.getElementById('edit-ex-sets').value = ex.sets;
 document.getElementById('edit-ex-rest').value = ex.rest;
 document.getElementById('edit-ex-increment').value = ex.increment;
-setExecution(ex.execution || 'livre', 'edit');
-// Pré-selecionar o movimento salvo (ou detectar pelo nome)
-const mov = ex.movimento || detectarMovimento(ex.name);
-setMovimento(mov, 'edit');
+setExecution(ex.execution, 'edit');
 openModal('edit-exercise-modal');
 }
 
@@ -3739,7 +3546,6 @@ ex.sets = parseInt(document.getElementById('edit-ex-sets').value) || 3;
 ex.rest = parseInt(document.getElementById('edit-ex-rest').value) || 90;
 ex.increment = parseFloat(document.getElementById('edit-ex-increment').value) || 2;
 ex.execution = document.getElementById('edit-ex-execution').value || 'livre';
-ex.movimento = document.getElementById('edit-ex-movimento')?.value || 'empurra';
 save();
 closeModal('edit-exercise-modal');
 renderExercises();
@@ -3818,8 +3624,8 @@ livre: [
 };
 
 function openPreWorkoutModal(pendingWorkout) {
-pwmState = { exIdx: pendingWorkout.exercises.length, exec: null, load: null, pendingWorkout };
-finishPreWorkout();
+pwmState = { exIdx: 0, exec: null, load: null, pendingWorkout };
+showNextPreWorkoutEx();
 }
 
 function showNextPreWorkoutEx() {
@@ -4062,7 +3868,7 @@ function getWeightSuggestion(ex, planId, customIncrement = null) {
       weight: currentWeight, minRep, maxRep, phase, increment,
       progressionBlocked: true, suggestedWeight: deloadWeight,
       tip: { type: 'deload',
-        msg: `😴 Reps caindo por 3 sessões seguidas. Deload: reduza para ${deloadWeight}kg por 1 semana, depois retome o ciclo.` }
+        msg: `🔄 Dia de adaptação: seu corpo está assimilando o estímulo. Reduza para ${deloadWeight}kg por 1 semana — amanhã você volta com força total.` }
     };
   }
 
@@ -4072,7 +3878,7 @@ function getWeightSuggestion(ex, planId, customIncrement = null) {
       weight: currentWeight, minRep, maxRep, phase, increment,
       progressionBlocked: true, suggestedWeight: null,
       tip: { type: 'warning',
-        msg: `⚠️ Reps caindo. Mantenha ${currentWeight}kg. Chegue a 12 reps com boa execução antes de subir.` }
+        msg: `⚠️ Carga travada: você não fez as repetições completas com execução consistente. Mantenha ${currentWeight}kg — priorize a técnica, a força vem depois.` }
     };
   }
 
@@ -4161,17 +3967,6 @@ function getWeightSuggestion(ex, planId, customIncrement = null) {
     tip = { ...tip, msg: tip.msg + ' ⚠️ Cardio recente pode afetar o desempenho hoje.' };
   }
 
-  // ── Dica de fase excêntrica por tipo de movimento ────────────
-  // Para puxadas e remadas, o excêntrico (fase controlada) é a fase
-  // INVERSA do supino — reforça isso na dica de progressão
-  const tipoMov = detectarMovimento(ex.name || '');
-  if (tip && tipoMov !== 'empurra') {
-    const dicaMov = tipoMov === 'puxa'
-      ? ' 🔼 Puxada: fase excêntrica = soltar devagar (3s) · concêntrica = puxar forte.'
-      : ' ↔️ Remada: fase excêntrica = estender devagar (3s) · concêntrica = remada forte.';
-    tip = { ...tip, msg: tip.msg + dicaMov };
-  }
-
   return { weight: currentWeight, minRep, maxRep, phase, increment,
     progressionBlocked: false, suggestedWeight, tip };
 }
@@ -4228,6 +4023,32 @@ finishPreWorkout();
   // exec-timer removido
 }
 
+function showTipToast(msg, type, icon) {
+  const existing = document.getElementById('tip-toast');
+  if (existing) existing.remove();
+  const colors = {up:{bg:'var(--green)',tx:'#000'},volume:{bg:'var(--blue)',tx:'#fff'},deload:{bg:'var(--red)',tx:'#fff'},warning:{bg:'var(--yellow)',tx:'#000'},info:{bg:'var(--orange)',tx:'#fff'}};
+  const c = colors[type] || colors.info;
+  const t = document.createElement('div');
+  t.id = 'tip-toast';
+  t.style.cssText = 'position:fixed;top:70px;left:50%;transform:translateX(-50%);background:'+c.bg+';color:'+c.tx+';padding:12px 18px;border-radius:14px;font-size:13px;font-weight:600;max-width:88vw;line-height:1.5;z-index:500;display:flex;gap:8px;align-items:flex-start;box-shadow:0 8px 24px rgba(0,0,0,0.4);animation:toastIn 0.3s ease;';
+  t.innerHTML = '<span style="flex-shrink:0">'+icon+'</span><span>'+msg+'</span>';
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(-8px)';t.style.transition='all 0.4s ease';setTimeout(()=>t.remove(),400);},5000);
+}
+
+function showTipToast(msg, type, icon) {
+  const existing = document.getElementById('tip-toast');
+  if (existing) existing.remove();
+  const colors = {up:{bg:'var(--green)',tx:'#000'},volume:{bg:'var(--blue)',tx:'#fff'},deload:{bg:'var(--red)',tx:'#fff'},warning:{bg:'var(--yellow)',tx:'#000'},info:{bg:'var(--orange)',tx:'#fff'}};
+  const c = colors[type] || colors.info;
+  const t = document.createElement('div');
+  t.id = 'tip-toast';
+  t.style.cssText = 'position:fixed;top:70px;left:50%;transform:translateX(-50%);background:'+c.bg+';color:'+c.tx+';padding:12px 18px;border-radius:14px;font-size:13px;font-weight:600;max-width:88vw;line-height:1.5;z-index:500;display:flex;gap:8px;align-items:flex-start;box-shadow:0 8px 24px rgba(0,0,0,0.4);animation:toastIn 0.3s ease;';
+  t.innerHTML = '<span style="flex-shrink:0">'+icon+'</span><span>'+msg+'</span>';
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(-8px)';t.style.transition='all 0.4s ease';setTimeout(()=>t.remove(),400);},5000);
+}
+
 function renderActiveWorkout() {
 const el = document.getElementById('active-exercises');
 if (!state.activeWorkout) return;
@@ -4266,15 +4087,11 @@ const tc = isUp      ? {bg:'var(--green-dim)',       bd:'var(--green)',      tx:
                         {bg:'var(--orange-dim)',       bd:'var(--orange-mid)', tx:'var(--orange)', ic:'💡'};
 
 const confirmBtn = ex.suggestedWeight && !ex.progressionBlocked
-  ? `<div style="margin-top:10px;background:var(--green-dim);border:1px solid rgba(0,230,118,0.3);border-radius:10px;padding:10px 12px;">
-      <div style="font-size:11px;color:var(--green);font-weight:700;margin-bottom:4px;">🎉 VOCÊ ESTÁ PRONTO PARA EVOLUIR!</div>
-      <div style="font-size:11px;color:var(--muted2);margin-bottom:8px;line-height:1.5;">Você completou todas as reps. O app sugere aumentar o peso no próximo treino.</div>
-      <button onclick="confirmProgression(${exIdx})"
-        style="background:var(--green);border:none;color:#000;font-weight:800;
-               font-size:12px;padding:8px 16px;border-radius:8px;cursor:pointer;width:100%;">
-        ↑ Usar ${ex.suggestedWeight}kg no próximo treino
-      </button>
-    </div>`
+  ? `<button onclick="confirmProgression(${exIdx})"
+      style="margin-top:10px;background:var(--green);border:none;color:#000;font-weight:800;
+             font-size:12px;padding:8px 16px;border-radius:8px;cursor:pointer;width:100%;">
+      ↑ Confirmar ${ex.suggestedWeight}kg no próximo treino
+    </button>`
   : '';
 
 // Phase badge — compact
@@ -4400,11 +4217,7 @@ return `
 
   <!-- SUBTÍTULO: peso atual + meta em linha única discreta -->
   <div style="font-size:13px;color:var(--muted2);margin-bottom:${ex.tip ? '12px' : '16px'};">
-    ${ex.currentWeight}kg · ${ex.targetMinRep || ex.suggestedReps || '6'}–${ex.targetMaxRep || 12} reps
-    <span style="font-size:10px;color:var(--muted);margin-left:2px;" title="Faixa de repetições: complete todas as séries nessa faixa para o app sugerir aumento de carga">
-      <span onclick="mostrarTipReps()" style="cursor:pointer;background:var(--card2);border:1px solid var(--border2);border-radius:50%;width:14px;height:14px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:9px;vertical-align:middle;">?</span>
-    </span>
-    · +${ex.increment || 2}kg/inc
+    ${ex.currentWeight}kg · ${ex.targetMinRep || ex.suggestedReps || '6'}–${ex.targetMaxRep || 12} reps · +${ex.increment || 2}kg/inc
   </div>
 
   ${ex.suggestedWeight && !ex.progressionBlocked ? confirmBtn : ''}
@@ -4436,11 +4249,6 @@ return `
       <div style="font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:6px;">
         ⏱️ Cadência
         <span style="font-size:11px;color:var(--muted2);font-weight:400;" id="cadencia-preset-label-${exIdx}">3-1-2</span>
-        <span onclick="event.stopPropagation();mostrarTipCadencia()" style="font-size:10px;color:var(--muted);background:var(--card2);border:1px solid var(--border2);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-weight:700;">?</span>
-        <span id="cadencia-tipo-badge-${exIdx}"
-          style="display:none;font-size:9px;font-weight:700;padding:2px 7px;border-radius:6px;
-                 background:var(--blue-dim);color:var(--blue);border:1px solid rgba(68,138,255,0.3);">
-        </span>
       </div>
       <button onclick="event.stopPropagation();toggleCadencia(${exIdx})" id="cadencia-btn-${exIdx}"
         style="background:var(--orange);border:none;color:white;font-size:11px;font-weight:700;
@@ -4452,53 +4260,24 @@ return `
     <!-- Corpo colapsável -->
     <div id="cadencia-body-${exIdx}" style="display:none;margin-top:12px;">
       <div class="cadencia-widget" id="cadencia-${exIdx}" style="background:transparent;border:none;padding:0;">
-
         <div class="cadencia-fase">
           <div class="cadencia-bloco" id="cbloco-${exIdx}-0">
             <div class="cadencia-num" id="cnum-${exIdx}-0">3</div>
-            <div class="cadencia-label" id="clabel-${exIdx}-0">DESCE</div>
+            <div class="cadencia-label">DESCE</div>
           </div>
           <div class="cadencia-sep">·</div>
           <div class="cadencia-bloco" id="cbloco-${exIdx}-1">
             <div class="cadencia-num" id="cnum-${exIdx}-1">1</div>
-            <div class="cadencia-label" id="clabel-${exIdx}-1">PAUSA</div>
+            <div class="cadencia-label">PAUSA</div>
           </div>
           <div class="cadencia-sep">·</div>
           <div class="cadencia-bloco" id="cbloco-${exIdx}-2">
             <div class="cadencia-num" id="cnum-${exIdx}-2">2</div>
-            <div class="cadencia-label" id="clabel-${exIdx}-2">SOBE</div>
-          </div>
-        </div>
-
-        <!-- Instrução de movimento — muda conforme empurra / puxa / remada -->
-        <div id="cadencia-instrucao-${exIdx}"
-          style="margin:8px 0 4px;padding:8px 12px;border-radius:10px;background:var(--card2);
-                 border:1px solid var(--border2);font-size:11px;color:var(--muted2);line-height:1.6;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
-            <span id="cadencia-instrucao-icon-${exIdx}" style="font-size:16px;line-height:1;">↓↑</span>
-            <span id="cadencia-instrucao-texto-${exIdx}" style="flex:1;">Desce devagar · Pausa · Empurra com força</span>
-          </div>
-          <div style="display:flex;gap:4px;">
-            <span style="font-size:10px;color:var(--muted);margin-right:2px;line-height:2;">Corrigir:</span>
-            <button onclick="corrigirMovimento(${exIdx},'empurra')" id="cmov-${exIdx}-empurra"
-              style="font-size:9px;font-weight:700;padding:3px 8px;border-radius:6px;cursor:pointer;
-                     background:var(--orange-dim);border:1px solid var(--orange-mid);color:var(--orange);">
-              ↓↑ Empurra
-            </button>
-            <button onclick="corrigirMovimento(${exIdx},'puxa')" id="cmov-${exIdx}-puxa"
-              style="font-size:9px;font-weight:700;padding:3px 8px;border-radius:6px;cursor:pointer;
-                     background:var(--card);border:1px solid var(--border2);color:var(--muted2);">
-              ↑↓ Puxa
-            </button>
-            <button onclick="corrigirMovimento(${exIdx},'remada')" id="cmov-${exIdx}-remada"
-              style="font-size:9px;font-weight:700;padding:3px 8px;border-radius:6px;cursor:pointer;
-                     background:var(--card);border:1px solid var(--border2);color:var(--muted2);">
-              →← Remada
-            </button>
+            <div class="cadencia-label">SOBE</div>
           </div>
         </div>
         <div id="cadencia-active-${exIdx}" style="display:none;text-align:center;padding:8px 0 4px;">
-          <div class="cadencia-fase-label" id="cadencia-fase-nome-${exIdx}">EXCENTRICO</div>
+          <div class="cadencia-fase-label" id="cadencia-fase-nome-${exIdx}">DESCE</div>
           <div class="cadencia-counter" id="cadencia-counter-${exIdx}">3</div>
           <div style="font-size:11px;color:var(--muted2);margin-top:4px;" id="cadencia-rep-${exIdx}">Rep 1</div>
           <div style="display:flex;gap:8px;justify-content:center;margin-top:10px;">
@@ -4515,8 +4294,8 @@ return `
           </div>
         </div>
         <div class="cadencia-preset-row" style="margin-top:10px;">
-          <div class="cadencia-preset" onclick="setCadenciaPreset(${exIdx},'iniciante')" id="cpreset-${exIdx}-iniciante">2-0-2<br><span style="font-size:9px;font-weight:400;">Iniciante</span></div>
-          <div class="cadencia-preset ativo" onclick="setCadenciaPreset(${exIdx},'hipertrofia')" id="cpreset-${exIdx}-hipertrofia">3-1-2<br><span style="font-size:9px;font-weight:400;">Hipertrofia ★</span></div>
+          <div class="cadencia-preset ativo" onclick="setCadenciaPreset(${exIdx},'iniciante')" id="cpreset-${exIdx}-iniciante">2-0-2<br><span style="font-size:9px;font-weight:400;">Iniciante</span></div>
+          <div class="cadencia-preset ativo" onclick="setCadenciaPreset(${exIdx},'hipertrofia')" id="cpreset-${exIdx}-hipertrofia" style="background:var(--orange);border-color:var(--orange);color:white;">3-1-2<br><span style="font-size:9px;font-weight:400;">Hipertrofia ★</span></div>
           <div class="cadencia-preset" onclick="setCadenciaPreset(${exIdx},'avancada')" id="cpreset-${exIdx}-avancada">4-1-2<br><span style="font-size:9px;font-weight:400;">Avançada</span></div>
         </div>
       </div>
@@ -4536,14 +4315,6 @@ return `
 
 </div>`;
 }).join('');
-// Inicializa os labels de cadência corretos para cada exercício após render
-setTimeout(() => {
-  if (state.activeWorkout) {
-    state.activeWorkout.exercises.forEach((ex, exIdx) => {
-      atualizarLabelsCadencia(exIdx);
-    });
-  }
-}, 50);
 }
 
 
@@ -4706,13 +4477,11 @@ skipTimer();
 }
 
 function startWorkoutTimer() {
+// Timer interno apenas — elemento do header foi removido
 if (state.workoutTimerInterval) clearInterval(state.workoutTimerInterval);
 state.workoutTimerInterval = setInterval(() => {
-const elapsed = Math.floor((Date.now() - state.workoutStartTime) / 1000);
-const m = String(Math.floor(elapsed / 60)).padStart(2, '0');
-const s = String(elapsed % 60).padStart(2, '0');
-const el = document.getElementById('active-workout-timer');
-if (el) el.textContent = `${m}:${s} — Em andamento`;
+  // Mantém o tempo internamente para calcular duração ao finalizar
+  // (o elemento active-workout-timer foi removido do header)
 }, 1000);
 }
 
@@ -4914,7 +4683,14 @@ function irProximaSerie() {
   const exIdx  = window._restExIdx;
   const setIdx = window._restSetIdx;
   if (exIdx === undefined || !state.activeWorkout) return;
+  const aEx = state.activeWorkout?.exercises[exIdx];
   const nextSetIdx = (setIdx !== undefined) ? setIdx + 1 : 0;
+  // Se não há próxima série neste exercício, vai para o próximo exercício
+  if (aEx && nextSetIdx >= aEx.sets.length) {
+    const nextCard = document.getElementById('ex-card-' + (exIdx + 1));
+    if (nextCard) nextCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
   setTimeout(() => {
     const btn = document.getElementById('serie-btn-' + exIdx + '-' + nextSetIdx);
     if (btn) btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -5322,10 +5098,12 @@ document.getElementById('foco-idle').style.display = 'flex';
 function checkAndShowPR(exId, weight) {
 const ex = state.exercises.find(e => e.id === exId);
 if (!ex) return;
+// getPR lê o histórico de sessions — a fonte de verdade correta
 const oldPR = getPR(exId);
 if (weight > oldPR && oldPR > 0) {
-setTimeout(() => showPRCard(ex.name, weight, oldPR), 1500);
+  setTimeout(() => showPRCard(ex.name, weight, oldPR), 1500);
 }
+// Não usa state.records — getPR(exId) já calcula o máximo histórico
 }
 
 function showPRCard(exName, newWeight, oldWeight) {
@@ -5540,12 +5318,13 @@ function closeTecnica() { closeModal('tecnica-modal'); }
 const EQUIP_LIVRE   = ['Halteres (1-10kg)', 'Dumbbells (12kg+)', 'Anilhas (barra)'];
 const EQUIP_MAQUINA = ['Barra com pino', 'Cabo / Polia', 'Smith (barra guiada)'];
 const INCREMENT_BY_EQUIP = {
-'Halteres (1-10kg)':  1,    
-'Dumbbells (12kg+)':  2,    
-'Anilhas (barra)':    1,    
-'Barra livre':        2.5,
-'Barra com pino':     5,
-'Cabo / Polia':       2.5,
+'Halteres (1-10kg)':    1,
+'Dumbbells (12kg+)':    2,
+'Anilhas (barra)':      1,
+'Anilhas (máquina)':    2,
+'Barra livre':          2.5,
+'Barra com pino':       5,
+'Cabo / Polia':         2.5,
 'Smith (barra guiada)': 2.5,
 };
 
@@ -5592,94 +5371,41 @@ function proximoPesoValido(pesoAtual, equip) {
   const inc = (typeof INCREMENT_BY_EQUIP !== 'undefined' && INCREMENT_BY_EQUIP[equip]) || 2;
   return { peso: pesoAtual + inc, descricao: `+${inc}kg` };
 }
-function setMovimento(tipo, prefix) {
-  // prefix vazio = modal novo exercício, 'edit' = modal editar
-  const p = prefix === 'edit' ? 'edit-' : '';
-  const hidden = document.getElementById(`${p}ex-movimento`);
-  if (hidden) hidden.value = tipo;
-  ['empurra','puxa','remada'].forEach(t => {
-    const btn = document.getElementById(`${p}mov-btn-${t}`);
-    if (!btn) return;
-    const ativo = t === tipo;
-    const estilos = {
-      empurra: ['var(--orange-dim)','var(--orange-mid)','var(--orange)'],
-      puxa:    ['var(--blue-dim)','rgba(68,138,255,0.4)','var(--blue)'],
-      remada:  ['rgba(0,230,118,0.1)','rgba(0,230,118,0.35)','var(--green)'],
-    };
-    if (ativo) {
-      btn.style.background  = estilos[t][0];
-      btn.style.borderColor = estilos[t][1];
-      btn.style.color       = estilos[t][2];
-    } else {
-      btn.style.background  = 'var(--card)';
-      btn.style.borderColor = 'var(--border2)';
-      btn.style.color       = 'var(--muted2)';
-    }
-  });
-}
-
-
 function setExecution(type, prefix) {
 const lBtn = document.getElementById(`${prefix}-exec-livre`);
 const mBtn = document.getElementById(`${prefix}-exec-maquina`);
 const hidden = document.getElementById(`${prefix}-execution`);
-const equipId = prefix === 'ex' || prefix === 'edit' ? `${prefix}-ex-equip` : 'wb-ex-equip';
-const btnsId  = prefix === 'ex' || prefix === 'edit' ? `${prefix}-ex-equip-btns` : 'wb-ex-equip-btns';
-const incId   = prefix === 'ex' || prefix === 'edit' ? `${prefix}-ex-increment` : 'wb-ex-increment';
-const equipHidden = document.getElementById(equipId);
-const equipBtns   = document.getElementById(btnsId);
-const incSel      = document.getElementById(incId);
-if (!lBtn || !mBtn || !hidden || !equipHidden || !equipBtns) return;
+const equipSel = document.getElementById(`${prefix === 'ex' || prefix === 'edit' ? (prefix + '-ex-equip') : 'wb-ex-equip'}`);
+const incSel = document.getElementById(`${prefix === 'ex' || prefix === 'edit' ? (prefix + '-ex-increment') : 'wb-ex-increment'}`);
+if (!lBtn || !mBtn || !hidden || !equipSel) return;
 lBtn.classList.toggle('active', type === 'livre');
 mBtn.classList.toggle('active', type === 'maquina');
 hidden.value = type;
-const LIVRE_OPTS = [
-  {v:'Halteres (1-10kg)', icon:'🏋️', label:'Halteres',  sub:'Fixos 1–10kg'},
-  {v:'Dumbbells (12kg+)', icon:'💪', label:'Dumbbells', sub:'12, 14, 16kg+'},
-  {v:'Anilhas (barra)',   icon:'🔴', label:'Anilhas',   sub:'Combinação placas'},
-];
-const MAQUINA_OPTS = [
-  {v:'Barra com pino',        icon:'📌', label:'Barra c/ pino', sub:'Pino + anilhas'},
-  {v:'Cabo / Polia',          icon:'〰️', label:'Cabo / Polia',  sub:'Cable machine'},
-  {v:'Smith (barra guiada)',  icon:'🔩', label:'Smith',         sub:'Barra guiada'},
-];
-const options = type === 'livre' ? LIVRE_OPTS : MAQUINA_OPTS;
-const cur = equipHidden.value;
-const selVal = options.find(o => o.v === cur) ? cur : options[0].v;
-equipHidden.value = selVal;
-equipBtns.innerHTML = options.map(o => `
-  <button type="button" onclick="selectEquip('${prefix}','${o.v}')"
-    id="eqbtn-${prefix}-${o.v.replace(/[^a-z0-9]/gi,'_')}"
-    class="execution-btn${selVal === o.v ? ' active' : ''}"
-    style="flex-direction:column;padding:8px 4px;gap:3px;">
-    <span style="font-size:18px;">${o.icon}</span>
-    <span style="font-weight:700;font-size:10px;line-height:1.2;">${o.label}</span>
-    <span style="font-size:9px;color:var(--muted2);line-height:1.2;">${o.sub}</span>
-  </button>`).join('');
+const options = type === 'livre' ? EQUIP_LIVRE : EQUIP_MAQUINA;
+equipSel.innerHTML = options.map((o, i) => {
+const icons = type === 'livre' ? ['🏋️','💪','🔴'] : ['📌','〰️','🔩'];
+return `<option value="${o}">${icons[i]} ${o}</option>`;
+}).join('');
 if (incSel) {
-  const inc = INCREMENT_BY_EQUIP[selVal] || 2;
-  const opt = Array.from(incSel.options).find(o => parseFloat(o.value) === inc);
-  if (opt) incSel.value = inc;
+const defaultInc = INCREMENT_BY_EQUIP[options[0]] || 2;
+const found = Array.from(incSel.options).find(o => parseFloat(o.value) === defaultInc);
+if (found) {
+incSel.value = defaultInc;
+} else {
+const opt = document.createElement('option');
+opt.value = defaultInc;
+opt.textContent = `${defaultInc} kg`;
+incSel.appendChild(opt);
+incSel.value = defaultInc;
 }
 }
-
-function selectEquip(prefix, val) {
-const equipId = prefix === 'ex' || prefix === 'edit' ? `${prefix}-ex-equip` : 'wb-ex-equip';
-const btnsId  = prefix === 'ex' || prefix === 'edit' ? `${prefix}-ex-equip-btns` : 'wb-ex-equip-btns';
-const incId   = prefix === 'ex' || prefix === 'edit' ? `${prefix}-ex-increment` : 'wb-ex-increment';
-const equipHidden = document.getElementById(equipId);
-const equipBtns   = document.getElementById(btnsId);
-const incSel      = document.getElementById(incId);
-if (!equipHidden) return;
-equipHidden.value = val;
-equipBtns?.querySelectorAll('.execution-btn').forEach(b => {
-  b.classList.toggle('active', b.id === `eqbtn-${prefix}-${val.replace(/[^a-z0-9]/gi,'_')}`);
-});
-if (incSel) {
-  const inc = INCREMENT_BY_EQUIP[val] || 2;
-  const opt = Array.from(incSel.options).find(o => parseFloat(o.value) === inc);
-  if (opt) incSel.value = inc;
+equipSel.onchange = () => {
+const inc = INCREMENT_BY_EQUIP[equipSel.value];
+if (incSel && inc) {
+const opt = Array.from(incSel.options).find(o => parseFloat(o.value) === inc);
+if (opt) incSel.value = inc;
 }
+};
 }
 
 function quickChangeRest(exIdx) {
@@ -5690,9 +5416,8 @@ if (!exDef) return;
 const options = [45, 60, 90, 120, 180, 240];
 const current = exDef.rest || 90;
 const currentIdx = options.indexOf(current);
-const nextIdx = currentIdx === -1 ? 2 : (currentIdx + 1) % options.length;
+const nextIdx = (currentIdx + 1) % options.length;
 exDef.rest = options[nextIdx];
-activeEx.rest = exDef.rest;
 save();
 renderActiveWorkout();
 showNotif('⏱', 'Descanso alterado', `${exDef.name}: ${formatRest(exDef.rest)}`, '');
@@ -5945,7 +5670,6 @@ el.style.display = type === 'musculacao' ? 'block' : 'none';
 });
 const inp = document.getElementById('ex-type');
 if (inp) inp.value = type;
-if (type === 'musculacao') setTimeout(() => setExecution('livre', 'ex'), 50);
 }
 
 function saveCardioExercise() {
@@ -6395,8 +6119,67 @@ renderBiblioteca();
 function setBibliotecaFiltro() {}
 function filtrarBiblioteca() {}
 
+
+function detectarSobreposicao(nomes) {
+  // Grupos musculares por exercício (detecção por nome)
+  const grupoMap = {
+    peito: ['supino','crucifixo','voador','peck','pec','crossover','flexao','flexão','push'],
+    triceps: ['tricep','trícep','extensão','extensao','testa','skull','mergulho','paralela','dip','pushdown'],
+    biceps: ['rosca','curl','bíceps','biceps'],
+    costas: ['puxada','pull','remada','row','dorsal','lat'],
+    ombro: ['elevação','elevacao','desenvolvimento','press','militar','arnold'],
+    perna: ['agach','squat','leg','cadeira','extensora','flexora','stiff','terra','afundo','passada','hack'],
+    gluteo: ['gluteo','glúteo','hip thrust','coice'],
+    abdomen: ['abdominal','prancha','obliquo','oblíquo','vácuo','vacuo'],
+  };
+
+  const getGrupo = (nome) => {
+    const n = (nome||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+    for (const [g, kws] of Object.entries(grupoMap)) {
+      if (kws.some(k => n.includes(k))) return g;
+    }
+    return null;
+  };
+
+  const grupos = nomes.map(getGrupo).filter(Boolean);
+  const contagem = {};
+  grupos.forEach(g => contagem[g] = (contagem[g]||0) + 1);
+
+  const alertas = [];
+  const pares = { peito: 'triceps', triceps: 'peito', costas: 'biceps', biceps: 'costas' };
+  const jaAlertado = new Set();
+
+  for (const [g, count] of Object.entries(contagem)) {
+    if (count >= 3 && !jaAlertado.has(g)) {
+      jaAlertado.add(g);
+      alertas.push({ html: `<div class="card card-sm" style="border-color:var(--yellow);margin-bottom:8px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:18px;">⚠️</span>
+          <div>
+            <div style="font-weight:700;color:var(--yellow);">Muitos exercícios de ${g}</div>
+            <div style="font-size:12px;color:var(--muted2);">${count} exercícios para o mesmo grupo. Considere reduzir para 2–3.</div>
+          </div>
+        </div>
+      </div>` });
+    }
+    const par = pares[g];
+    if (par && contagem[par] && !jaAlertado.has(g+par)) {
+      jaAlertado.add(g+par);
+      alertas.push({ html: `<div class="card card-sm" style="border-color:var(--blue);margin-bottom:8px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:18px;">💡</span>
+          <div>
+            <div style="font-weight:700;color:var(--blue);">Fadiga cruzada: ${g} + ${par}</div>
+            <div style="font-size:12px;color:var(--muted2);">Esses grupos se cansam mutuamente — já contabilize no volume total.</div>
+          </div>
+        </div>
+      </div>` });
+    }
+  }
+  return alertas;
+}
 function checkOverlapNoPlan(planId, newExName) {
-const plan = state.workoutPlans?.find(p => p.id === planId);
+const plan = state.plans?.find(p => p.id === planId);
 if (!plan || !plan.exercises?.length) return [];
 const todosNomes = [...plan.exercises.map(e => e.name), newExName];
 return detectarSobreposicao(todosNomes);
@@ -6415,121 +6198,6 @@ iniciante:  { desce: 2, pausa: 0, sobe: 2, label: '2-0-2' },
 hipertrofia:{ desce: 3, pausa: 1, sobe: 2, label: '3-1-2' },
 avancada:   { desce: 4, pausa: 1, sobe: 2, label: '4-1-2' },
 };
-
-// ═══════════════════════════════════════════════════════════════════
-//  DETECÇÃO DE PADRÃO DE MOVIMENTO — empurra / puxa / remada
-//  Isso garante que os labels de cadência fazem sentido fisiológico
-//  para cada tipo de exercício, onde excêntrico e concêntrico variam.
-// ═══════════════════════════════════════════════════════════════════
-const MOVIMENTO_KEYWORDS = {
-  puxa: [
-    // Puxadas verticais
-    'puxada', 'pull', 'pulldown', 'pull-down', 'pull down',
-    'barra fixa', 'barra assistida',
-    'lat', 'latissimo', 'grande dorsal',
-    'pulley frente', 'pulley costas', 'pulley', 'polia alta',
-    'graviton',
-    // Inglês
-    'chin up', 'chinup', 'pullup', 'pull up',
-  ],
-  remada: [
-    // Remadas horizontais
-    'remada', 'remo',
-    'row', 'rows',
-    'serrátil', 'serratil',
-    'face pull',
-    'high row', 'low row',
-    'polia baixa', 'cabo baixo',
-    'remada curvada', 'remada articulada', 'remada unilateral',
-    'remada cavalinho', 'remada máquina', 'remada maquina',
-    'remada haltere', 'remada barra',
-    't-bar', 'tbar',
-    'seated row', 'chest supported',
-  ],
-  empurra: [
-    // Supino e variações
-    'supino', 'bench', 'crucifixo', 'fly',
-    // Press de ombros
-    'desenvolvimento', 'press', 'militar',
-    'arnold', 'arnold press',
-    'elevação frontal', 'elevacao frontal',
-    // Tríceps
-    'tricep', 'trícep', 'triceps', 'tríceps',
-    'pushdown', 'push down', 'testa', 'skull',
-    'mergulho', 'paralela', 'dip',
-    'extensão', 'extensao',
-    // Peito
-    'voador', 'peck', 'pec', 'crossover', 'cross',
-    'flexão', 'flexao', 'push up',
-    // Pernas (empurra)
-    'leg press', 'agach', 'squat', 'hack',
-    'cadeira extensora', 'leg extension', 'extensor',
-    'panturrilha', 'calf', 'gémeo', 'gemeo',
-    // Geral
-    'empurra', 'push',
-  ],
-};
-
-// Labels para cada tipo de movimento
-const MOVIMENTO_LABELS = {
-  puxa: {
-    fases: ['EXCENTRICO 🔼', 'PAUSA ⏸️', 'CONCENTRICO 🔽'],
-    // excêntrico = soltar controlado (barra sobe / você desce)
-    // concêntrico = puxar (barra desce / você puxa)
-    falar: ['Solta devagar', 'Pausa', 'Puxa forte'],
-    beep:  ['desce', 'pausa', 'sobe'],
-    blocos: ['SOLTA', 'PAUSA', 'PUXA'],
-    tooltip: 'Excêntrico: soltar controlado — Concêntrico: puxar forte',
-    icone: '🏋️↑',
-  },
-  remada: {
-    fases: ['EXCENTRICO 🔙', 'PAUSA ⏸️', 'CONCENTRICO 🔜'],
-    falar: ['Solta devagar', 'Pausa', 'Puxa forte'],
-    beep:  ['desce', 'pausa', 'sobe'],
-    blocos: ['SOLTA', 'PAUSA', 'REMADA'],
-    tooltip: 'Excêntrico: estender braços controlado — Concêntrico: remada forte',
-    icone: '🏋️↔',
-  },
-  empurra: {
-    fases: ['EXCENTRICO 🔽', 'PAUSA ⏸️', 'CONCENTRICO 🔼'],
-    falar: ['Desce devagar', 'Pausa', 'Empurra forte'],
-    beep:  ['desce', 'pausa', 'sobe'],
-    blocos: ['DESCE', 'PAUSA', 'SOBE'],
-    tooltip: 'Excêntrico: descer controlado — Concêntrico: empurrar forte',
-    icone: '🏋️↓',
-  },
-};
-
-function detectarMovimento(nomeExercicio) {
-  const nome = (nomeExercicio || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  for (const [tipo, keywords] of Object.entries(MOVIMENTO_KEYWORDS)) {
-    if (keywords.some(k => nome.includes(k.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')))) {
-      return tipo;
-    }
-  }
-  // Default: empurra (labels originais do sistema)
-  return 'empurra';
-}
-
-// Override manual por exercício — persiste durante o treino
-const movimentoOverride = {};
-
-function corrigirMovimento(exIdx, tipo) {
-  movimentoOverride[exIdx] = tipo;
-  atualizarLabelsCadencia(exIdx);
-  // Se cadência ativa, atualiza display também
-  const c = getCadencia(exIdx);
-  if (c.ativa) atualizarDisplayCadencia(exIdx);
-}
-
-function getMovimentoLabels(exIdx) {
-  const ex = state.activeWorkout?.exercises[exIdx];
-  // Prioridade: 1) override manual durante treino, 2) campo salvo no exercício, 3) detecção por nome
-  const tipo = movimentoOverride[exIdx]
-    || ex?.movimento
-    || detectarMovimento(ex?.name || '');
-  return { tipo, ...MOVIMENTO_LABELS[tipo] };
-}
 
 const cadenciaState = {};
 
@@ -6554,10 +6222,9 @@ c.preset = preset;
 ['iniciante','hipertrofia','avancada'].forEach(p => {
 const btn = document.getElementById(`cpreset-${exIdx}-${p}`);
 if (!btn) return;
-btn.classList.toggle('ativo', p === preset);
-btn.style.background = '';
-btn.style.borderColor = '';
-btn.style.color = '';
+btn.style.background = p === preset ? 'var(--orange)' : '';
+btn.style.borderColor = p === preset ? 'var(--orange)' : '';
+btn.style.color = p === preset ? 'white' : '';
 });
 const cfg = CADENCIA_PRESETS[preset];
 const nums = [cfg.desce, cfg.pausa, cfg.sobe];
@@ -6571,14 +6238,7 @@ if (c.ativa) { pararCadencia(exIdx); toggleCadencia(exIdx); }
 function toggleCadenciaCollapse(exIdx) {
   const body = document.getElementById(`cadencia-body-${exIdx}`);
   if (!body) return;
-  const isOpen = body.style.display === 'none';
-  body.style.display = isOpen ? 'block' : 'none';
-  if (isOpen) {
-    // Inicia animação idle ao abrir, aguarda canvas render
-
-  } else {
-
-  }
+  body.style.display = body.style.display === 'none' ? 'block' : 'none';
 }
 
 function toggleCadencia(exIdx) {
@@ -6592,7 +6252,8 @@ iniciarCadencia(exIdx);
 
 async function iniciarCadencia(exIdx) {
   await resumeAudio();
-  const mv = getMovimentoLabels(exIdx);
+  beepCadencia('completo');
+  setTimeout(() => falarFase('Desça devagar'), 300);
   const c = getCadencia(exIdx);
   const ex = state.activeWorkout?.exercises[exIdx];
   if (ex) {
@@ -6606,8 +6267,6 @@ async function iniciarCadencia(exIdx) {
   c.contador = cfg.desce;
   c.totalSegundos = (cfg.desce + cfg.pausa + cfg.sobe) * c.targetReps;
   c.segundosDecorridos = 0;
-  // 1 beep inicial — sincroniza com o 1º segundo do contador
-  beepCadencia('desce');
 
   const widget = document.getElementById(`cadencia-${exIdx}`);
   const activeDiv = document.getElementById(`cadencia-active-${exIdx}`);
@@ -6616,6 +6275,10 @@ async function iniciarCadencia(exIdx) {
   if (activeDiv) activeDiv.style.display = 'block';
   if (btn) { btn.textContent = 'PAUSAR'; btn.style.background = 'var(--muted2)'; }
   atualizarDisplayCadencia(exIdx);
+
+  // Sincronizar exec-timer com cadência — encontra o set ativo
+  const setIdx = _getSetAtivo(exIdx);
+  _syncExecTimerWithCadencia(exIdx, setIdx, c.totalSegundos);
 
   c.interval = setInterval(() => tickCadencia(exIdx), 1000);
 }
@@ -6648,33 +6311,27 @@ function _syncExecTimerWithCadencia(exIdx, setIdx, totalSecs) {
 function tickCadencia(exIdx) {
 const c = getCadencia(exIdx);
 const cfg = CADENCIA_PRESETS[c.preset];
-const mv = getMovimentoLabels(exIdx);
 const fases = [cfg.desce, cfg.pausa, cfg.sobe];
-const tipoAtual = mv.beep[c.fase] || ['desce','pausa','sobe'][c.fase];
-
 c.contador--;
-
 if (c.contador <= 0) {
-  // Fim da fase atual — avança
   c.fase++;
   if (c.fase === 1 && cfg.pausa === 0) c.fase = 2;
   if (c.fase > 2) {
     c.rep++;
     if (c.rep > c.targetReps) {
-      beepCadencia('completo');
+      falarFase('Série completa! Descanse.');
       pararCadencia(exIdx);
       showNotif('🎉', 'Série completa!', `${c.targetReps} reps com cadência perfeita!`, 'success');
       return;
     }
     c.fase = 0;
+    falarFase('Desça devagar');
+  } else {
+    // Beep ao mudar de fase
+    const frases = ['Desça devagar', 'Pausa', 'Sobe'];
+    falarFase(frases[c.fase] || 'Desça devagar');
   }
   c.contador = fases[c.fase];
-  // Beep da virada de fase (1º beep da nova fase)
-  const tipoNovo = mv.beep[c.fase] || ['desce','pausa','sobe'][c.fase];
-  beepCadencia(tipoNovo);
-} else {
-  // Meio da fase — 1 beep no ritmo
-  beepCadencia(tipoAtual);
 }
   // Sync exec-timer countdown
   if (window._cadExecTimer) {
@@ -6705,112 +6362,62 @@ async function resumeAudio() {
   }
 }
 
-async function _tocarBeep(freq, dur, volume=0.35) {
+async function beepCadencia(tipo) {
+  if (!cadenciaSomAtivo) return;
+  const freqs = { desce: 440, pausa: 330, sobe: 550, completo: 660 };
+  const duras = { desce: 150, pausa: 100, sobe: 150, completo: 300 };
+  const freq = freqs[tipo] || 440;
+  const dur  = (duras[tipo] || 150) / 1000;
   try {
     await resumeAudio();
     const osc  = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.type = 'sine';
     osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
     osc.connect(gain);
     gain.connect(audioCtx.destination);
     osc.start(audioCtx.currentTime);
     osc.stop(audioCtx.currentTime + dur);
+  } catch(e) { console.warn('Beep erro:', e); }
+}
+
+function falarTexto(texto) {
+  if (!cadenciaSomAtivo || !window.speechSynthesis) return;
+  try {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(texto);
+    u.lang = 'pt-BR'; u.rate = 0.9; u.pitch = 1.1; u.volume = 1;
+    const ptVoz = window.speechSynthesis.getVoices().find(v => v.lang.startsWith('pt'));
+    if (ptVoz) u.voice = ptVoz;
+    window.speechSynthesis.speak(u);
   } catch(e) {}
 }
 
-async function beepCadencia(tipo) {
+function falarFase(texto) {
   if (!cadenciaSomAtivo) return;
-  const freqs = { desce: 440, pausa: 330, sobe: 600, completo: 720 };
-  const duras = { desce: 0.10, pausa: 0.08, sobe: 0.10, completo: 0.28 };
-  await _tocarBeep(freqs[tipo] || 440, duras[tipo] || 0.10);
-}
-
-// beepsFase não é mais usada — cada tick dispara 1 beep
-function beepsFase() {}
-
-function falarFase(texto, beepTipo) {
-  if (!cadenciaSomAtivo) return;
-  const tipo = beepTipo || (
-    texto.toLowerCase().includes('desc') || texto.toLowerCase().includes('solta') ? 'desce'
-    : texto.toLowerCase().includes('paus') ? 'pausa'
-    : texto.toLowerCase().includes('sobe') || texto.toLowerCase().includes('suba') || texto.toLowerCase().includes('empurra') || texto.toLowerCase().includes('puxa') ? 'sobe'
-    : texto.toLowerCase().includes('complet') ? 'completo' : 'desce'
-  );
+  const tipo = texto.toLowerCase().includes('desc') ? 'desce'
+             : texto.toLowerCase().includes('paus') ? 'pausa'
+             : texto.toLowerCase().includes('sobe') || texto.toLowerCase().includes('suba') ? 'sobe'
+             : texto.toLowerCase().includes('complet') ? 'completo' : 'desce';
   beepCadencia(tipo);
+  setTimeout(() => falarTexto(texto), 60);
 }
 
 function toggleCadenciaSom(exIdx) {
   cadenciaSomAtivo = !cadenciaSomAtivo;
   const btn = document.getElementById(`cadencia-som-${exIdx}`);
   if (btn) btn.textContent = cadenciaSomAtivo ? '🔊' : '🔇';
+  if (!cadenciaSomAtivo && window.speechSynthesis) window.speechSynthesis.cancel();
+  // Beep de confirmação ao ligar
   if (cadenciaSomAtivo) beepCadencia('completo');
-}
-
-const INSTRUCAO_TEXTO = {
-  empurra: { icon: '↓↑', texto: 'Desce devagar · Pausa no fundo · Empurra com força' },
-  puxa:    { icon: '↑↓', texto: 'Solta devagar (braços sobem) · Pausa · Puxa forte (traz ao peito)' },
-  remada:  { icon: '→←', texto: 'Estende os braços devagar · Pausa · Puxa os cotovelos para trás' },
-};
-
-function atualizarLabelsCadencia(exIdx) {
-  const mv = getMovimentoLabels(exIdx);
-  // Labels dos blocos
-  ['0','1','2'].forEach(i => {
-    const el = document.getElementById(`clabel-${exIdx}-${i}`);
-    if (el) el.textContent = mv.blocos[parseInt(i)];
-  });
-  // Badge de tipo
-  const tipoBadge = document.getElementById(`cadencia-tipo-badge-${exIdx}`);
-  if (tipoBadge) {
-    if (mv.tipo !== 'empurra') {
-      tipoBadge.textContent = mv.tipo === 'puxa' ? '🔼 Puxada' : '↔️ Remada';
-      tipoBadge.style.display = 'inline-flex';
-    } else {
-      tipoBadge.style.display = 'none';
-    }
-  }
-  // Instrução de movimento
-  const inst = INSTRUCAO_TEXTO[mv.tipo] || INSTRUCAO_TEXTO.empurra;
-  const iconEl  = document.getElementById(`cadencia-instrucao-icon-${exIdx}`);
-  const textoEl = document.getElementById(`cadencia-instrucao-texto-${exIdx}`);
-  const boxEl   = document.getElementById(`cadencia-instrucao-${exIdx}`);
-  if (iconEl)  iconEl.textContent  = inst.icon;
-  if (textoEl) textoEl.textContent = inst.texto;
-  if (boxEl) {
-    const cores  = { empurra: 'var(--orange-dim)', puxa: 'var(--blue-dim)', remada: 'rgba(0,230,118,0.07)' };
-    const bordas = { empurra: 'var(--orange-mid)', puxa: 'rgba(68,138,255,0.3)', remada: 'rgba(0,230,118,0.2)' };
-    boxEl.style.background   = cores[mv.tipo]  || cores.empurra;
-    boxEl.style.borderColor  = bordas[mv.tipo] || bordas.empurra;
-  }
-  // Destaca botão de correção ativo
-  ['empurra','puxa','remada'].forEach(t => {
-    const btn = document.getElementById(`cmov-${exIdx}-${t}`);
-    if (!btn) return;
-    const ativo = t === mv.tipo;
-    const corAtiva  = { empurra: ['var(--orange-dim)','var(--orange-mid)','var(--orange)'], puxa: ['var(--blue-dim)','rgba(68,138,255,0.4)','var(--blue)'], remada: ['rgba(0,230,118,0.1)','rgba(0,230,118,0.35)','var(--green)'] };
-    if (ativo) {
-      btn.style.background   = corAtiva[t][0];
-      btn.style.borderColor  = corAtiva[t][1];
-      btn.style.color        = corAtiva[t][2];
-      btn.style.fontWeight   = '800';
-    } else {
-      btn.style.background   = 'var(--card)';
-      btn.style.borderColor  = 'var(--border2)';
-      btn.style.color        = 'var(--muted2)';
-      btn.style.fontWeight   = '700';
-    }
-  });
 }
 
 function atualizarDisplayCadencia(exIdx) {
 const c = getCadencia(exIdx);
 const cfg = CADENCIA_PRESETS[c.preset];
-const mv = getMovimentoLabels(exIdx);
-atualizarLabelsCadencia(exIdx);
-const faseNomes = mv.fases;
+const faseNomes = ['DESCE 🔽', 'PAUSA ⏸️', 'SOBE 🔼'];
 const faseCores = ['var(--orange)', 'var(--yellow)', 'var(--green)'];
 const counterClasses = ['', 'pausa', 'sobe'];
 const counterEl = document.getElementById(`cadencia-counter-${exIdx}`);
@@ -6857,7 +6464,6 @@ function pararCadencia(exIdx) {
   c.rep = 1;
   c.segundosDecorridos = 0;
   window._cadExecTimer = null;
-
   const widget = document.getElementById(`cadencia-${exIdx}`);
   const activeDiv = document.getElementById(`cadencia-active-${exIdx}`);
   const btn = document.getElementById(`cadencia-btn-${exIdx}`);
@@ -6907,7 +6513,11 @@ streakMaximo = Math.max(streakMaximo, tempStreak);
 if (i > 1) tempStreak = 0;
 }
 }
-const totalPRs = Object.keys(state.records || {}).length;
+// Conta PRs: exercícios onde o peso máximo registrado é maior que o peso inicial cadastrado
+const totalPRs = state.exercises.filter(ex => {
+  const pr = getPR(ex.id);
+  return pr > 0 && pr > (ex.weight || 0);
+}).length;
 const semanas = {};
 sessions.filter(s => !s.isRestDay && !s.isCardio).forEach(s => {
 const d = new Date(s.date);
@@ -6934,218 +6544,6 @@ const nivel = niveis.find(n => xp >= n.min && xp <= n.max) || niveis[0];
 const progresso = ((xp - nivel.min) / (nivel.max - nivel.min)) * 100;
 const next = niveis[niveis.indexOf(nivel) + 1];
 return { ...nivel, progresso: Math.min(progresso, 100), xp, next };
-}
-
-// ── PLANTA DO PROGRESSO ──────────────────────────────
-const PLANTAS = [
-  { emoji:'🌱', nome:'Musgo do Ganho',       min:0  },
-  { emoji:'🌿', nome:'Broto Forte',          min:7  },
-  { emoji:'🪴', nome:'Vaso de Ferro',        min:14 },
-  { emoji:'🌳', nome:'Árvore do Shape',      min:21 },
-  { emoji:'🌴', nome:'Palmeira do PR',       min:35 },
-  { emoji:'🌵', nome:'Cacto Invencível',     min:50 },
-  { emoji:'🌲', nome:'Carvalho Lendário',    min:70 },
-  { emoji:'🎋', nome:'Bambu do Muzy',        min:90 },
-];
-
-function getPlantaAtual(streak) {
-  let p = PLANTAS[0];
-  for (const pl of PLANTAS) { if (streak >= pl.min) p = pl; }
-  return p;
-}
-
-function renderPlantaWidget() {
-  const stats = getStats();
-  const dias = stats.streakAtual || 0;
-  const morta = dias === 0 && (state.sessions||[]).length > 0;
-  const planta = morta ? { emoji:'🥀', nome:'Sua planta morreu...' } : getPlantaAtual(dias);
-  const proxPlanta = PLANTAS.find(p => p.min > dias);
-  const faltam = proxPlanta ? proxPlanta.min - dias : 0;
-  const nivelAtual = PLANTAS.filter(p => p.min <= dias).length;
-
-  return `
-<div class="plant-container">
-  <div style="display:flex;align-items:center;gap:14px;">
-    <div class="${morta ? 'plant-dead' : 'plant-emoji'}" style="${morta ? 'font-size:56px;line-height:1;' : ''}">${planta.emoji}</div>
-    <div style="flex:1;">
-      <div class="plant-label">🌿 PLANTA DO PROGRESSO</div>
-      <div class="plant-name">${planta.nome}</div>
-      <div class="plant-status">${morta
-        ? '<span style="color:var(--red)">Streak zerou — planta murcha. Treine hoje para reviver!</span>'
-        : `Nível ${nivelAtual}/8 · ${dias} dias · ${proxPlanta ? `faltam ${faltam} para ${proxPlanta.emoji}` : '🏆 Nível máximo!'}`
-      }</div>
-    </div>
-    <div class="plant-streak">${dias}</div>
-  </div>
-</div>`;
-}
-
-// ── APOSTA FINANCEIRA ──────────────────────────────
-function renderApostaWidget() {
-  const aposta = state.aposta;
-  if (!aposta || !aposta.ativa) {
-    return `<button class="aposta-ativar-btn" onclick="abrirModalAposta()">
-      💰 ATIVAR MODO APOSTA — pressão real pra não falhar
-    </button>`;
-  }
-  const dias = Math.floor((Date.now() - aposta.dataInicio) / 86400000);
-  const stats = getStats();
-  const perdeu = stats.streakAtual === 0 && dias > 0;
-  if (perdeu) {
-    return `<div class="aposta-card">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <span style="font-size:28px;">💸</span>
-        <div>
-          <div style="font-weight:800;color:var(--red);font-size:14px;">APOSTA PERDIDA</div>
-          <div style="font-size:12px;color:var(--muted2);">R$ ${aposta.valor} doados à ${aposta.caridade}</div>
-        </div>
-      </div>
-      <button onclick="cancelarAposta()" style="width:100%;padding:8px;background:transparent;border:1px solid var(--border2);border-radius:8px;color:var(--muted2);font-size:12px;cursor:pointer;">
-        Entendi — fechar aposta
-      </button>
-    </div>`;
-  }
-  return `<div class="aposta-card">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-      <span style="font-size:28px;">🔥</span>
-      <div style="flex:1;">
-        <div style="font-weight:800;color:var(--red);font-size:14px;">APOSTA ATIVA — R$ ${aposta.valor}</div>
-        <div style="font-size:12px;color:var(--muted2);">Em jogo há ${dias} dia${dias!==1?'s':''} · ${aposta.caridade}</div>
-      </div>
-      <div style="font-family:'Bebas Neue';font-size:32px;color:var(--red);line-height:1;">${aposta.valor}</div>
-    </div>
-    <div style="font-size:11px;color:var(--muted2);background:var(--card2);border-radius:8px;padding:8px;">
-      Se sua streak zerar, R$ ${aposta.valor} vão automaticamente para ${aposta.caridade}. Não há como cancelar.
-    </div>
-  </div>`;
-}
-
-function abrirModalAposta() {
-  if (document.getElementById('aposta-modal-overlay')) return;
-  const valores = [10, 20, 50, 100];
-  const caridades = ['APAE Brasil', 'Medicos Sem Fronteiras', 'Banco de Alimentos', 'WWF Brasil'];
-
-  const overlay = document.createElement('div');
-  overlay.id = 'aposta-modal-overlay';
-  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:flex-end;';
-  overlay.onclick = function(e) { if (e.target === overlay) fecharModalAposta(); };
-
-  const sheet = document.createElement('div');
-  sheet.style.cssText = 'background:var(--card);border-radius:24px 24px 0 0;padding:28px 20px 40px;width:100%;border-top:1px solid var(--border2);';
-
-  // Título
-  const titulo = document.createElement('div');
-  titulo.style.cssText = 'font-family:Bebas Neue,sans-serif;font-size:28px;letter-spacing:1px;margin-bottom:6px;';
-  titulo.textContent = '💰 MODO APOSTA';
-  sheet.appendChild(titulo);
-
-  // Descrição
-  const desc = document.createElement('div');
-  desc.style.cssText = 'font-size:13px;color:var(--muted2);margin-bottom:20px;line-height:1.6;';
-  desc.innerHTML = 'Escolha um valor. Se sua <strong style="color:var(--text)">streak zerar</strong>, o dinheiro vai para a caridade. Sem cancelamento.';
-  sheet.appendChild(desc);
-
-  // Label valores
-  const lblVal = document.createElement('div');
-  lblVal.style.cssText = 'font-size:12px;color:var(--muted2);margin-bottom:8px;font-weight:700;';
-  lblVal.textContent = 'VALOR DA APOSTA';
-  sheet.appendChild(lblVal);
-
-  // Grid valores
-  const gridVal = document.createElement('div');
-  gridVal.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;';
-  valores.forEach(function(v) {
-    const btn = document.createElement('button');
-    btn.id = 'aposta-val-' + v;
-    btn.style.cssText = 'padding:12px 4px;border-radius:10px;border:1.5px solid var(--border2);background:var(--card2);color:var(--muted2);font-family:Bebas Neue,sans-serif;font-size:22px;cursor:pointer;transition:all 0.15s;';
-    btn.textContent = 'R$' + v;
-    btn.onclick = function() { selecionarValorAposta(v); };
-    gridVal.appendChild(btn);
-  });
-  sheet.appendChild(gridVal);
-
-  // Label caridades
-  const lblCar = document.createElement('div');
-  lblCar.style.cssText = 'font-size:12px;color:var(--muted2);margin-bottom:8px;font-weight:700;';
-  lblCar.textContent = 'DESTINO DO DINHEIRO';
-  sheet.appendChild(lblCar);
-
-  // Grid caridades
-  const gridCar = document.createElement('div');
-  gridCar.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px;';
-  caridades.forEach(function(c) {
-    const btn = document.createElement('button');
-    btn.id = 'aposta-car-' + c.replace(/\s/g, '_');
-    btn.style.cssText = 'padding:10px 8px;border-radius:10px;border:1.5px solid var(--border2);background:var(--card2);color:var(--muted2);font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s;text-align:center;';
-    btn.textContent = c;
-    btn.onclick = function() { selecionarCaridadeAposta(c); };
-    gridCar.appendChild(btn);
-  });
-  sheet.appendChild(gridCar);
-
-  // Botão confirmar
-  const btnConfirm = document.createElement('button');
-  btnConfirm.style.cssText = 'width:100%;padding:15px;background:var(--red);border:none;border-radius:14px;color:white;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:0.5px;margin-bottom:10px;';
-  btnConfirm.textContent = '🔥 CONFIRMAR APOSTA';
-  btnConfirm.onclick = confirmarAposta;
-  sheet.appendChild(btnConfirm);
-
-  // Botão cancelar
-  const btnCancel = document.createElement('button');
-  btnCancel.style.cssText = 'width:100%;padding:10px;background:transparent;border:1px solid var(--border2);border-radius:10px;color:var(--muted2);font-size:13px;cursor:pointer;';
-  btnCancel.textContent = 'Cancelar';
-  btnCancel.onclick = fecharModalAposta;
-  sheet.appendChild(btnCancel);
-
-  overlay.appendChild(sheet);
-  document.body.appendChild(overlay);
-
-  window._apostaValor = 50;
-  window._apostaCaridade = 'APAE Brasil';
-  selecionarValorAposta(50);
-  selecionarCaridadeAposta('APAE Brasil');
-}
-
-function selecionarValorAposta(v) {
-  window._apostaValor = v;
-  document.querySelectorAll('[id^="aposta-val-"]').forEach(b => {
-    const isSelected = b.id === `aposta-val-${v}`;
-    b.style.background    = isSelected ? 'rgba(255,82,82,0.15)' : 'var(--card2)';
-    b.style.borderColor   = isSelected ? 'var(--red)' : 'var(--border2)';
-    b.style.color         = isSelected ? 'var(--red)' : 'var(--muted2)';
-  });
-}
-
-function selecionarCaridadeAposta(c) {
-  window._apostaCaridade = c;
-  document.querySelectorAll('[id^="aposta-car-"]').forEach(b => {
-    const key = c.replace(/\s/g,'_');
-    const isSelected = b.id === `aposta-car-${key}`;
-    b.style.background  = isSelected ? 'rgba(255,82,82,0.12)' : 'var(--card2)';
-    b.style.borderColor = isSelected ? 'var(--red)' : 'var(--border2)';
-    b.style.color       = isSelected ? 'var(--red)' : 'var(--muted2)';
-  });
-}
-
-function fecharModalAposta() {
-  const el = document.getElementById('aposta-modal-overlay');
-  if (el) el.remove();
-}
-
-function confirmarAposta() {
-  const valor = window._apostaValor || 50;
-  const caridade = window._apostaCaridade || 'APAE Brasil';
-  state.aposta = { ativa: true, valor, caridade, dataInicio: Date.now() };
-  save();
-  fecharModalAposta();
-  renderDashboard();
-  showNotif('🔥', 'Aposta ativada!', `R$ ${valor} em jogo. Não vai falhar!`, 'warning');
-}
-
-function cancelarAposta() {
-  state.aposta = null;
-  save();
-  renderDashboard();
 }
 
 function renderStreakCard() {
@@ -7288,68 +6686,6 @@ if (overlay) overlay.style.display = 'none';
 if (!state.gamification) state.gamification = {};
 state.gamification.tutorialVisto = true;
 saveState();
-}
-
-function mostrarTipReps() {
-  const existing = document.getElementById('tip-reps-modal');
-  if (existing) { existing.remove(); return; }
-  const modal = document.createElement('div');
-  modal.id = 'tip-reps-modal';
-  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:flex-end;justify-content:center;padding:0 0 20px;';
-  modal.innerHTML = `
-    <div style="background:var(--card);border-radius:20px 20px 16px 16px;padding:24px 20px;width:100%;max-width:420px;border:1px solid var(--border2);">
-      <div style="font-family:'Bebas Neue';font-size:22px;letter-spacing:1px;margin-bottom:4px;">COMO FUNCIONA A PROGRESSÃO?</div>
-      <div style="font-size:12px;color:var(--muted2);margin-bottom:16px;">O app decide quando você está pronto para aumentar o peso</div>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
-        <div style="background:var(--card2);border-radius:10px;padding:12px;font-size:12px;color:var(--muted2);line-height:1.7;">
-          <strong style="color:var(--text);">Exemplo — 6 a 12 reps com 60kg:</strong><br>
-          • Semana 1: faz 8 reps ✅ — continua no mesmo peso<br>
-          • Semana 2: faz 10 reps ✅ — continua<br>
-          • Semana 3: faz <strong style="color:var(--orange);">12 reps em todas as séries</strong> 🎉<br>
-          → App sugere subir para <strong style="color:var(--green);">62kg</strong>
-        </div>
-        <div style="background:var(--orange-dim);border-radius:10px;padding:12px;font-size:11px;color:var(--muted2);line-height:1.6;border:1px solid var(--orange-mid);">
-          💡 <strong style="color:var(--orange);">Simples:</strong> Quando conseguir fazer a quantidade máxima de reps em todas as séries, o app te avisa para aumentar o peso. Você confirma e pronto!
-        </div>
-      </div>
-      <button onclick="document.getElementById('tip-reps-modal').remove()" class="btn btn-primary btn-full">Entendi! 💪</button>
-    </div>`;
-  document.body.appendChild(modal);
-  modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
-}
-
-function mostrarTipCadencia() {
-  // Modal explicando cadência em português simples
-  const existing = document.getElementById('tip-cadencia-modal');
-  if (existing) { existing.remove(); return; }
-  const modal = document.createElement('div');
-  modal.id = 'tip-cadencia-modal';
-  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:flex-end;justify-content:center;padding:0 0 20px;';
-  modal.innerHTML = `
-    <div style="background:var(--card);border-radius:20px 20px 16px 16px;padding:24px 20px;width:100%;max-width:420px;border:1px solid var(--border2);">
-      <div style="font-family:'Bebas Neue';font-size:22px;letter-spacing:1px;margin-bottom:4px;">O QUE É CADÊNCIA?</div>
-      <div style="font-size:12px;color:var(--muted2);margin-bottom:16px;">A velocidade de cada fase do movimento</div>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
-        <div style="display:flex;gap:12px;align-items:center;background:var(--card2);border-radius:10px;padding:10px 12px;">
-          <div style="background:var(--orange-dim);color:var(--orange);font-family:'Bebas Neue';font-size:22px;min-width:36px;text-align:center;border-radius:6px;padding:2px 0;">3</div>
-          <div><div style="font-weight:700;font-size:13px;">DESCE — 3 segundos</div><div style="font-size:11px;color:var(--muted2);margin-top:2px;">Abaixe o peso lentamente contando 3 segundos. Essa fase constrói músculo.</div></div>
-        </div>
-        <div style="display:flex;gap:12px;align-items:center;background:var(--card2);border-radius:10px;padding:10px 12px;">
-          <div style="background:#FFD74022;color:var(--yellow);font-family:'Bebas Neue';font-size:22px;min-width:36px;text-align:center;border-radius:6px;padding:2px 0;">1</div>
-          <div><div style="font-weight:700;font-size:13px;">PAUSA — 1 segundo</div><div style="font-size:11px;color:var(--muted2);margin-top:2px;">Segure embaixo por 1 segundo. Aumenta a tensão no músculo.</div></div>
-        </div>
-        <div style="display:flex;gap:12px;align-items:center;background:var(--card2);border-radius:10px;padding:10px 12px;">
-          <div style="background:var(--green-dim);color:var(--green);font-family:'Bebas Neue';font-size:22px;min-width:36px;text-align:center;border-radius:6px;padding:2px 0;">2</div>
-          <div><div style="font-weight:700;font-size:13px;">SOBE — 2 segundos</div><div style="font-size:11px;color:var(--muted2);margin-top:2px;">Suba o peso em 2 segundos com força controlada.</div></div>
-        </div>
-      </div>
-      <div style="background:var(--orange-dim);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--muted2);margin-bottom:14px;line-height:1.6;">
-        💡 <strong style="color:var(--orange);">Por que usar?</strong> Mover devagar aumenta o tempo que o músculo fica sob tensão — o principal gatilho para crescimento muscular.
-      </div>
-      <button onclick="document.getElementById('tip-cadencia-modal').remove()" class="btn btn-primary btn-full">Entendi! 💪</button>
-    </div>`;
-  document.body.appendChild(modal);
-  modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
 }
 
 function verificarCheckinHoje() {
@@ -8037,26 +7373,11 @@ function descartarFocoSession() {
   document.getElementById('foco-resume-banner').style.display = 'none';
 }
 
-function aceitarLGPD() {
-  try { localStorage.setItem('progressar_lgpd', '1'); } catch(e) {}
-  document.getElementById('lgpd-overlay').style.display = 'none';
-}
-
-function verificarLGPD() {
-  try {
-    if (!localStorage.getItem('progressar_lgpd')) {
-      document.getElementById('lgpd-overlay').style.display = 'flex';
-    }
-  } catch(e) {}
-}
-
 try {
 load();
 } catch(e) {
 showLocalFileError && showLocalFileError();
 }
-
-verificarLGPD();
 
 if (state.user) {
 document.getElementById('onboarding-screen').style.display = 'none';
